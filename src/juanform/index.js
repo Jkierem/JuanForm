@@ -1,2 +1,7 @@
-import { Field , Form } from "./collections"
-import { Button , ComboBox , Input , Label } from "./components"
+export { default as Button } from './Button'
+export { default as CheckBox } from './CheckBox'
+export { default as ComboBox } from './ComboBox'
+export { default as Field } from './Field'
+export { default as Form } from './Form'
+export { default as Input } from './Input'
+export { default as Label } from './Label'

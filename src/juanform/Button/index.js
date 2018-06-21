@@ -1,4 +1,5 @@
 import React from 'react'
+import { buttonStyle } from '../resources/Styles'
 
 class Button extends React.Component{
 	constructor(props){
@@ -16,10 +17,14 @@ class Button extends React.Component{
 	}
 
 	render(){
-		const { id , label=this.props.children } = this.props
+		const { id , label=this.props.children , style={} } = this.props
 		const { handleClick } = this
+		let realStyle = {
+			...buttonStyle,
+			...style
+		}
 		return(
-			<button id={id} onClick={handleClick} >{label}</button>
+			<button id={id} style={realStyle} onClick={handleClick} >{label}</button>
 		);
 	}
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { inputStyle } from '../resources/Styles'
 
 class Input extends React.Component{
 	constructor(props){
@@ -23,18 +24,25 @@ class Input extends React.Component{
 	}
 
 	render(){
-		const { id , name , type="text", placeholder } = this.props
+		const { id , name , type="text", placeholder , style } = this.props
 		const { value } = this.state
-		return(
-			<input
-				id={id}
-				name={name}
-				onChange={this.handleChange}
-				placeholder={placeholder}
-				type={type}
-				value={value}
-			/>
-		);
+		let realStyle = {
+			...inputStyle,
+			...style
+		}
+		if( type !== "radio" && type !== "checkbox"){
+			return(
+				<input
+					id={id}
+					name={name}
+					style={realStyle}
+					onChange={this.handleChange}
+					placeholder={placeholder}
+					type={type}
+					value={value}
+				/>
+			);
+		}
 	}
 }
 

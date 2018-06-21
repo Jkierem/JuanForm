@@ -1,4 +1,5 @@
 import React from 'react'
+import { fieldStyle } from '../resources/Styles'
 
 //FieldWrapper for form inputs etc etc
 class Field extends React.Component{
@@ -15,8 +16,13 @@ class Field extends React.Component{
 	}
 
 	render(){
+		const { style={} } = this.props;
+		let realStyle = {
+			...fieldStyle,
+			...style
+		}
 		return(
-			<article>
+			<article style={realStyle}>
 				{this.transformChildren()}
 			</article>
 		)

@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button , Input , ComboBox } from '../../components'
-import { Field } from '../'
+import { Button , Input , ComboBox , CheckBox , Field } from '../'
+import { formStyle } from '../resources/Styles'
 
 class Form extends React.Component{
 	constructor(props){
@@ -62,6 +62,10 @@ class Form extends React.Component{
 			return React.cloneElement(child,{
 				onChange: this.handleInputChange
 			})
+		}else if( child.type === CheckBox ){
+			return React.cloneElement(child,{
+				onChange: this.handleInputChange
+			})
 		}else{
 			return child
 		}
@@ -83,11 +87,14 @@ class Form extends React.Component{
 	}
 
 	render(){
-		const { id, autocomplete } = this.props
+		const { id , style={} } = this.props
 		const { handleSubmit } = this
-		let ac = autoComplete ? "on" : "off";
+		let realStyle = {
+			...formStyle,
+			...style
+		}
 		return(
-			<form id={id}  autoComplete={ac} onSubmit={handleSubmit}>
+			<form id={id} style={realStyle} onSubmit={handleSubmit}>
 				{this.transformChildren()}
 			</form>
 		);

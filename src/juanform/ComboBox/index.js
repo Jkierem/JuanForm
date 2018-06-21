@@ -1,4 +1,5 @@
 import React from 'react'
+import { comboStyle } from '../resources/Styles'
 
 class ComboBox extends React.Component{
 	constructor(props){
@@ -45,11 +46,14 @@ class ComboBox extends React.Component{
 	}
 
 	render(){
-		const { id, name } = this.props;
+		const { id, name, style={} } = this.props;
 		const { renderOptions } = this;
-
+		let realStyle = {
+			...comboStyle,
+			...style
+		}
 		return(
-			<select id={id} name={name} onChange={this.handleChange}>
+			<select id={id} name={name} style={realStyle} onChange={this.handleChange}>
 				{renderOptions()}
 			</select>
 		);

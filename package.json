@@ -21,7 +21,7 @@
     "react-dom": "~16.4.1"
   },
   "keywords": [
-    "state",
+    "form",
     "react"
   ],
   "devDependencies": {
