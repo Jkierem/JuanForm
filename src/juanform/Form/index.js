@@ -35,7 +35,7 @@ class Form extends React.Component{
 	handleSubmit = (e) =>{
 		e.preventDefault();
 		if( this.props.onSubmit ){
-			this.props.onSubmit(e, this.state)
+			this.props.onSubmit(this.state)
 		}
 	};
 

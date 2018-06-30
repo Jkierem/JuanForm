@@ -17,7 +17,7 @@ class App extends React.Component{
     }
   }
 
-  handleSubmit = (e,state) => {
+  handleSubmit = (state) => {
     this.setState({ submitted: true , form: state });
     console.log(state);
   }
