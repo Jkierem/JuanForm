@@ -74,7 +74,7 @@ function (_React$Component) {
       e.preventDefault();
 
       if (_this.props.onSubmit) {
-        _this.props.onSubmit(e, _this.state);
+        _this.props.onSubmit(_this.state);
       }
     });
 

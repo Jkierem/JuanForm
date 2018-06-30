@@ -88,6 +88,7 @@ function (_React$Component) {
       var realStyle = _objectSpread({}, _Styles.checkStyle, style);
 
       return _react.default.createElement("input", {
+        id: id,
         type: "checkbox",
         value: name,
         style: realStyle,

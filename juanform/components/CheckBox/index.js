@@ -59,8 +59,7 @@ function (_React$Component) {
           _this.props.onChange(e, {
             id: id,
             name: name,
-            value: e.target.value,
-            isChecked: _this.state.isChecked
+            value: _this.state.isChecked
           });
         }
       });
@@ -80,7 +79,8 @@ function (_React$Component) {
       var _this$props2 = this.props,
           _this$props2$label = _this$props2.label,
           label = _this$props2$label === void 0 ? false : _this$props2$label,
-          style = _this$props2.style,
+          _this$props2$style = _this$props2.style,
+          style = _this$props2$style === void 0 ? {} : _this$props2$style,
           name = _this$props2.name,
           id = _this$props2.id;
       var isChecked = this.state.isChecked;
@@ -88,8 +88,10 @@ function (_React$Component) {
       var realStyle = _objectSpread({}, _Styles.checkStyle, style);
 
       return _react.default.createElement("input", {
+        id: id,
         type: "checkbox",
         value: name,
+        style: realStyle,
         checked: isChecked,
         onChange: this.handleChange
       });

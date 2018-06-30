@@ -64,13 +64,15 @@ function (_React$Component) {
           id = _this$props.id,
           _this$props$label = _this$props.label,
           label = _this$props$label === void 0 ? this.props.children : _this$props$label,
-          style = _this$props.style;
+          _this$props$style = _this$props.style,
+          style = _this$props$style === void 0 ? {} : _this$props$style;
       var handleClick = this.handleClick;
 
       var realStyle = _objectSpread({}, _Styles.buttonStyle, style);
 
       return _react.default.createElement("button", {
         id: id,
+        style: realStyle,
         onClick: handleClick
       }, label);
     }

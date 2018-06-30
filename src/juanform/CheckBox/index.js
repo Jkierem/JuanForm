@@ -35,6 +35,7 @@ class CheckBox extends React.Component{
 		}
 		return(
 			<input
+				id={id}
 				type="checkbox"
 				value={name}
 				style={realStyle}

@@ -87,6 +87,7 @@ function (_React$Component) {
         return _react.default.createElement("input", {
           id: id,
           name: name,
+          style: realStyle,
           onChange: this.handleChange,
           placeholder: placeholder,
           type: type,

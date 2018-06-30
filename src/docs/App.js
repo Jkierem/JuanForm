@@ -50,8 +50,8 @@ class App extends React.Component{
             <Input id={"text"} name="textField" placeholder={"Some text..."}/>
           </Field>
           <Field>
-            <CheckBox id={"check"} name={"checkbox"} />
             <Label htmlFor={"check"} >CheckBox</Label>
+            <CheckBox id={"check"} name={"checkbox"} />
           </Field>
           <Field>
             <Label htmlFor={"combo"} >ComboBox</Label>

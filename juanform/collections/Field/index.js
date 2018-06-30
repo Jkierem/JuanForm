@@ -63,11 +63,14 @@ function (_React$Component) {
   _createClass(Field, [{
     key: "render",
     value: function render() {
-      var style = this.props.style;
+      var _this$props$style = this.props.style,
+          style = _this$props$style === void 0 ? {} : _this$props$style;
 
       var realStyle = _objectSpread({}, _Styles.fieldStyle, style);
 
-      return _react.default.createElement("article", null, this.transformChildren());
+      return _react.default.createElement("article", {
+        style: realStyle
+      }, this.transformChildren());
     }
   }]);
 

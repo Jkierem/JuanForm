@@ -60,6 +60,7 @@ function (_React$Component) {
 
       return _react.default.createElement("label", {
         id: id,
+        style: realStyle,
         htmlFor: htmlFor
       }, this.props.children);
     }

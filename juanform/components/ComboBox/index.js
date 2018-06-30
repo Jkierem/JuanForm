@@ -114,7 +114,8 @@ function (_React$Component) {
       var _this$props3 = this.props,
           id = _this$props3.id,
           name = _this$props3.name,
-          style = _this$props3.style;
+          _this$props3$style = _this$props3.style,
+          style = _this$props3$style === void 0 ? {} : _this$props3$style;
       var renderOptions = this.renderOptions;
 
       var realStyle = _objectSpread({}, _Styles.comboStyle, style);
@@ -122,6 +123,7 @@ function (_React$Component) {
       return _react.default.createElement("select", {
         id: id,
         name: name,
+        style: realStyle,
         onChange: this.handleChange
       }, renderOptions());
     }

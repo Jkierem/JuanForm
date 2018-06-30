@@ -9,8 +9,6 @@ var _react = _interopRequireDefault(require("react"));
 
 var _components = require("../../components");
 
-var _ = require("../");
-
 var _Styles = require("../../resources/Styles");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -76,7 +74,7 @@ function (_React$Component) {
       e.preventDefault();
 
       if (_this.props.onSubmit) {
-        _this.props.onSubmit(e, _this.state);
+        _this.props.onSubmit(_this.state);
       }
     });
 
@@ -103,6 +101,10 @@ function (_React$Component) {
         return _react.default.cloneElement(child, {
           onChange: _this.handleInputChange
         });
+      } else if (child.type === _components.CheckBox) {
+        return _react.default.cloneElement(child, {
+          onChange: _this.handleInputChange
+        });
       } else {
         return child;
       }
@@ -114,7 +116,7 @@ function (_React$Component) {
           return undefined;
         }
 
-        if (child.type === _.Field) {
+        if (child.type === _components.Field) {
           return _react.default.cloneElement(child, {
             transform: _this.transform
           });
@@ -133,16 +135,15 @@ function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           id = _this$props.id,
-          autocomplete = _this$props.autocomplete,
-          style = _this$props.style;
+          _this$props$style = _this$props.style,
+          style = _this$props$style === void 0 ? {} : _this$props$style;
       var handleSubmit = this.handleSubmit;
-      var ac = autoComplete ? "on" : "off";
 
       var realStyle = _objectSpread({}, _Styles.formStyle, style);
 
       return _react.default.createElement("form", {
         id: id,
-        autoComplete: ac,
+        style: realStyle,
         onSubmit: handleSubmit
       }, this.transformChildren());
     }
