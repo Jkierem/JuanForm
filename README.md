@@ -11,7 +11,7 @@ It uses the "name" prop of the components inside to save each value. If no "name
 import React from 'react';
 import { Button , Form , Input } from 'juanform';
 
-function mySubmitFunction(e,state){
+function mySubmitFunction(state){
   console.log(state); //{ someInput: ... }
 }
 
@@ -35,7 +35,7 @@ Form only checks for immediate children. Meaning that if you need to wrap the co
 import React from 'react';
 import { Button , Field , Form , Input , Label } from 'juanform';
 
-function mySubmitFunction(e,state){
+function mySubmitFunction(state){
   console.log(state); //{ someInput: ... }
 }
 
