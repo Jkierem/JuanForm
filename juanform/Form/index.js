@@ -7,15 +7,13 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _ = require("../");
+var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _Styles = require("../resources/Styles");
+var _ = require("../");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -34,6 +32,11 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var StyledForm = _styledComponents.default.form.withConfig({
+  displayName: "Form__StyledForm",
+  componentId: "sc-1dyl1fa-0"
+})(["padding:10px;"]);
 
 var Form =
 /*#__PURE__*/
@@ -135,15 +138,11 @@ function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           id = _this$props.id,
-          _this$props$style = _this$props.style,
-          style = _this$props$style === void 0 ? {} : _this$props$style;
+          _this$props$as = _this$props.as,
+          StyledComponent = _this$props$as === void 0 ? StyledForm : _this$props$as;
       var handleSubmit = this.handleSubmit;
-
-      var realStyle = _objectSpread({}, _Styles.formStyle, style);
-
-      return _react.default.createElement("form", {
+      return _react.default.createElement(StyledComponent, {
         id: id,
-        style: realStyle,
         onSubmit: handleSubmit
       }, this.transformChildren());
     }

@@ -7,13 +7,13 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _Styles = require("../resources/Styles");
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _Utils = require("../resources/Utils");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -32,6 +32,23 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var StyledCombo = _styledComponents.default.select.withConfig({
+  displayName: "ComboBox__StyledCombo",
+  componentId: "oks0ih-0"
+})([""]);
+
+var StyledOption = _styledComponents.default.option.withConfig({
+  displayName: "ComboBox__StyledOption",
+  componentId: "oks0ih-1"
+})([""]);
+
+var getFirst = (0, _Utils.prop)("0");
+var getValue = (0, _Utils.prop)("value");
+
+var getFirstValue = function getFirstValue(obj) {
+  return getValue(getFirst(obj));
+};
 
 var ComboBox =
 /*#__PURE__*/
@@ -52,13 +69,13 @@ function (_React$Component) {
           emptyMessage = _this$props$emptyMess === void 0 ? "-- Empty --" : _this$props$emptyMess;
 
       if (options.length === 0) {
-        return _react.default.createElement("option", {
+        return _react.default.createElement(ComboBox.Option, {
           value: null
         }, emptyMessage);
       }
 
       return options.map(function (op, key) {
-        return _react.default.createElement("option", {
+        return _react.default.createElement(ComboBox.Option, {
           key: key,
           value: op.value
         }, op.label);
@@ -83,16 +100,14 @@ function (_React$Component) {
       }
     });
 
-    var _options = props.options;
+    var value = props.value,
+        _options = props.options;
 
-    if (_options.length === 0) {
-      _options = [{
-        value: null
-      }];
-    }
+    var children = _react.default.Children.toArray(props.children);
 
+    var defaultValue = value || getFirstValue(props.options) || children[0].props.value || children[0].props.children;
     _this.state = {
-      value: _options[0].value
+      value: defaultValue
     };
     var _id = props.id,
         _name = props.name;
@@ -101,7 +116,7 @@ function (_React$Component) {
       props.onChange(null, {
         id: _id,
         name: _name,
-        value: _options[0].value
+        value: _this.state.value
       });
     }
 
@@ -114,18 +129,22 @@ function (_React$Component) {
       var _this$props3 = this.props,
           id = _this$props3.id,
           name = _this$props3.name,
-          _this$props3$style = _this$props3.style,
-          style = _this$props3$style === void 0 ? {} : _this$props3$style;
+          _this$props3$as = _this$props3.as,
+          StyledComponent = _this$props3$as === void 0 ? StyledCombo : _this$props3$as,
+          options = _this$props3.options;
       var renderOptions = this.renderOptions;
-
-      var realStyle = _objectSpread({}, _Styles.comboStyle, style);
-
-      return _react.default.createElement("select", {
+      return _react.default.createElement(StyledComponent, {
         id: id,
         name: name,
-        style: realStyle,
         onChange: this.handleChange
-      }, renderOptions());
+      }, options ? renderOptions() : this.props.children);
+    }
+  }], [{
+    key: "Option",
+    value: function Option(props) {
+      var _props$as = props.as,
+          StyledComponent = _props$as === void 0 ? StyledOption : _props$as;
+      return _react.default.createElement(StyledComponent, props, props.children);
     }
   }]);
 

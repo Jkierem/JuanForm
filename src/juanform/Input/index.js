@@ -1,5 +1,7 @@
 import React from 'react'
-import { inputStyle } from '../resources/Styles'
+import styled from 'styled-components'
+
+const StyledInput = styled.input``
 
 class Input extends React.Component{
 	constructor(props){
@@ -24,18 +26,14 @@ class Input extends React.Component{
 	}
 
 	render(){
-		const { id , name , type="text", placeholder , style } = this.props
+		const { id , name , type="text", placeholder , as:StyledComponent=StyledInput } = this.props
 		const { value } = this.state
-		let realStyle = {
-			...inputStyle,
-			...style
-		}
+
 		if( type !== "radio" && type !== "checkbox"){
 			return(
-				<input
+				<StyledComponent
 					id={id}
 					name={name}
-					style={realStyle}
 					onChange={this.handleChange}
 					placeholder={placeholder}
 					type={type}

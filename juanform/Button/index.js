@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _Styles = require("../resources/Styles");
+var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32,6 +32,11 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var StyledButton = _styledComponents.default.button.withConfig({
+  displayName: "Button__StyledButton",
+  componentId: "sc-3god2t-0"
+})(["padding:5px"]);
 
 var Button =
 /*#__PURE__*/
@@ -64,15 +69,11 @@ function (_React$Component) {
           id = _this$props.id,
           _this$props$label = _this$props.label,
           label = _this$props$label === void 0 ? this.props.children : _this$props$label,
-          _this$props$style = _this$props.style,
-          style = _this$props$style === void 0 ? {} : _this$props$style;
+          as = _this$props.as;
       var handleClick = this.handleClick;
-
-      var realStyle = _objectSpread({}, _Styles.buttonStyle, style);
-
-      return _react.default.createElement("button", {
+      var StyledComponent = as ? as : StyledButton;
+      return _react.default.createElement(StyledComponent, {
         id: id,
-        style: realStyle,
         onClick: handleClick
       }, label);
     }

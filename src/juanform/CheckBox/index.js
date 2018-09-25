@@ -1,5 +1,7 @@
 import React from 'react'
-import { checkStyle } from '../resources/Styles'
+import styled from 'styled-components'
+
+const StyledInput = styled.input``
 
 class CheckBox extends React.Component{
 	constructor(props){
@@ -27,18 +29,13 @@ class CheckBox extends React.Component{
 	}
 
 	render(){
-		const { label=false , style={} , name , id } = this.props;
+		const { label=false , name , id , as:StyledComponent=StyledInput} = this.props;
 		const { isChecked } = this.state;
-		const realStyle = {
-			...checkStyle,
-			...style
-		}
 		return(
-			<input
+			<StyledComponent
 				id={id}
 				type="checkbox"
 				value={name}
-				style={realStyle}
 				checked={isChecked}
 				onChange={this.handleChange}
 			/>

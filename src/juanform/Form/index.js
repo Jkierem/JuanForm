@@ -1,6 +1,10 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Button , Input , ComboBox , CheckBox , Field } from '../'
-import { formStyle } from '../resources/Styles'
+
+const StyledForm = styled.form`
+	padding: 10px;
+`
 
 class Form extends React.Component{
 	constructor(props){
@@ -87,16 +91,12 @@ class Form extends React.Component{
 	}
 
 	render(){
-		const { id , style={} } = this.props
+		const { id , as:StyledComponent=StyledForm } = this.props
 		const { handleSubmit } = this
-		let realStyle = {
-			...formStyle,
-			...style
-		}
 		return(
-			<form id={id} style={realStyle} onSubmit={handleSubmit}>
+			<StyledComponent id={id} onSubmit={handleSubmit}>
 				{this.transformChildren()}
-			</form>
+			</StyledComponent>
 		);
 	}
 }

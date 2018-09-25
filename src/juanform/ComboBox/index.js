@@ -1,33 +1,47 @@
 import React from 'react'
-import { comboStyle } from '../resources/Styles'
+import styled from 'styled-components'
+import { prop } from '../resources/Utils'
+
+const StyledCombo = styled.select``
+const StyledOption = styled.option``
+
+const getFirst = prop("0");
+const getValue = prop("value")
+const getFirstValue = obj => getValue(getFirst(obj))
 
 class ComboBox extends React.Component{
 	constructor(props){
 		super(props);
-		let { options } = props
-		if( options.length === 0 ){
-			options=[{value:null}]
-		}
+		const { value , options } = props;
+		const children = React.Children.toArray(props.children)
+		const defaultValue = value || getFirstValue(props.options) || children[0].props.value || children[0].props.children
 		this.state={
-			value: options[0].value
+			value: defaultValue
 		}
 		const { id , name } = props
 		if( props.onChange ){
 			props.onChange(null,{
 				id: id,
 				name: name,
-				value: options[0].value
+				value: this.state.value
 			})
 		}
+	}
+
+	static Option(props){
+		const { as:StyledComponent=StyledOption } = props;
+		return (
+			<StyledComponent {...props}>{props.children}</StyledComponent>
+		)
 	}
 
 	renderOptions = () =>{
 		const { options , emptyMessage="-- Empty --"} = this.props;
 		if( options.length === 0){
-			return <option value={null}>{emptyMessage}</option>
+			return <ComboBox.Option value={null}>{emptyMessage}</ComboBox.Option>
 		}
 		return options.map((op,key) => {
-			return <option key={key} value={op.value}>{op.label}</option>
+			return <ComboBox.Option key={key} value={op.value}>{op.label}</ComboBox.Option>
 		})
 	}
 
@@ -46,16 +60,12 @@ class ComboBox extends React.Component{
 	}
 
 	render(){
-		const { id, name, style={} } = this.props;
+		const { id, name, as:StyledComponent=StyledCombo , options } = this.props;
 		const { renderOptions } = this;
-		let realStyle = {
-			...comboStyle,
-			...style
-		}
 		return(
-			<select id={id} name={name} style={realStyle} onChange={this.handleChange}>
-				{renderOptions()}
-			</select>
+			<StyledComponent id={id} name={name} onChange={this.handleChange}>
+				{options ? renderOptions() : this.props.children }
+			</StyledComponent>
 		);
 	}
 }

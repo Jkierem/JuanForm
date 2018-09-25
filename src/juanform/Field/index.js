@@ -1,5 +1,9 @@
 import React from 'react'
-import { fieldStyle } from '../resources/Styles'
+import styled from 'styled-components'
+
+const StyledArticle = styled.article`
+	padding: 5px
+`
 
 //FieldWrapper for form inputs etc etc
 class Field extends React.Component{
@@ -16,15 +20,11 @@ class Field extends React.Component{
 	}
 
 	render(){
-		const { style={} } = this.props;
-		let realStyle = {
-			...fieldStyle,
-			...style
-		}
+		const { as:StyledComponent=StyledArticle } = this.props;
 		return(
-			<article style={realStyle}>
+			<StyledComponent>
 				{this.transformChildren()}
-			</article>
+			</StyledComponent>
 		)
 	}
 }

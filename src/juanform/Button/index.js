@@ -1,5 +1,9 @@
 import React from 'react'
-import { buttonStyle } from '../resources/Styles'
+import styled from 'styled-components'
+
+const StyledButton = styled.button`
+	padding: 5px
+`
 
 class Button extends React.Component{
 	constructor(props){
@@ -17,14 +21,11 @@ class Button extends React.Component{
 	}
 
 	render(){
-		const { id , label=this.props.children , style={} } = this.props
+		const { id , label=this.props.children , as } = this.props
 		const { handleClick } = this
-		let realStyle = {
-			...buttonStyle,
-			...style
-		}
+		const StyledComponent = as ? as : StyledButton;
 		return(
-			<button id={id} style={realStyle} onClick={handleClick} >{label}</button>
+			<StyledComponent id={id} onClick={handleClick} >{label}</StyledComponent>
 		);
 	}
 }

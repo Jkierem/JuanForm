@@ -7,15 +7,11 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _Styles = require("../resources/Styles");
+var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -33,19 +29,20 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+var StyledLabel = _styledComponents.default.label.withConfig({
+  displayName: "Label__StyledLabel",
+  componentId: "icy0vi-0"
+})(["padding:10px;"]);
+
 var Label =
 /*#__PURE__*/
 function (_React$Component) {
   _inherits(Label, _React$Component);
 
-  function Label(props) {
-    var _this;
-
+  function Label() {
     _classCallCheck(this, Label);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Label).call(this, props));
-    _this.state = {};
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(Label).apply(this, arguments));
   }
 
   _createClass(Label, [{
@@ -54,13 +51,10 @@ function (_React$Component) {
       var _this$props = this.props,
           htmlFor = _this$props.htmlFor,
           id = _this$props.id,
-          style = _this$props.style;
-
-      var realStyle = _objectSpread({}, _Styles.labelStyle, style);
-
-      return _react.default.createElement("label", {
+          _this$props$as = _this$props.as,
+          StyledComponent = _this$props$as === void 0 ? StyledLabel : _this$props$as;
+      return _react.default.createElement(StyledComponent, {
         id: id,
-        style: realStyle,
         htmlFor: htmlFor
       }, this.props.children);
     }

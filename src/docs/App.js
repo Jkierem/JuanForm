@@ -57,6 +57,13 @@ class App extends React.Component{
             <Label htmlFor={"combo"} >ComboBox</Label>
             <ComboBox id={"combo"} name={"comboBox"} options={options}/>
           </Field>
+          <Field>
+            <Label htmlFor={"combo2"}>Another ComboBox</Label>
+            <ComboBox id={"combo2"} name={"anotherComboBox"}>
+              <ComboBox.Option value={1}>One</ComboBox.Option>
+              <ComboBox.Option>Two</ComboBox.Option>
+            </ComboBox>
+          </Field>
           <Button submit>Submit</Button>
         </Form>
         { submitted &&
