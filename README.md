@@ -31,11 +31,12 @@ The onSubmit prop of Form, receives a callback and the callback will receive the
 
 ## Custom Styled Components
 
-All components have an "as" prop to pass a styled-component to replace the default component. The passed component should match the default component's tag. As an utility, the Styled module can be used to add custom styles without having to explicitly know which tag belongs to each component.
+All components have an "as" prop to pass a styled-component to replace the default component. The passed component should match the default component's tag. As an utility, the Styled module can be used to add custom styles without having to explicitly know which tag belongs to each component. The use of the "as" prop will completely erase the default styles (which as of this version are basically none) so if this behavior is not desired, the Styled module includes the default styles for each comnponent as to be able to take full advantage of styled-components extension capabilities.
 Form only checks for immediate children. Meaning that if you need to wrap the component inside a different component to give a particular style, you should use the Field component. The Field component is just a wrapper for this particular case.
 
 ```javascript
 import React from 'react';
+import styled from 'styled-components'
 import { Button , Field , Form , Input , Label , Styled } from 'juanform';
 
 function mySubmitFunction(state){
@@ -46,8 +47,8 @@ const CoolField = Styled.Field`
    ...custom style...
 `
 
-const CoolLabel = Styled.Label`
-   ...custom style...
+const CoolLabel = styled(Styled.Defaults.Label)`
+   ...custom extended style...
 `
 
 class MyForm extends React.Component {
@@ -67,7 +68,7 @@ class MyForm extends React.Component {
 
 ### Form
 
-Basic component of juanform. Saves the values of valid form components inside its state. Valid form components are Button, Input, ComboBox and CheckBox. The Field component is also valid but it is only a wrapper to add style. 
+Basic component of juanform. Saves the values of valid form components inside its state. Valid form components are Button, Input, ComboBox and CheckBox. The Field component is also valid but it is only a wrapper to add style.
 
 | Props       | Type     | Default Value | Description     |
 | ----------- | -------- | :-----------: | --------------- |
