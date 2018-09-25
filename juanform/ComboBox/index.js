@@ -9,7 +9,7 @@ var _react = _interopRequireDefault(require("react"));
 
 var _Styled = _interopRequireDefault(require("../Styled"));
 
-var _Utils = require("../resources/Utils");
+var _Utils = require("../Utils");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -143,5 +143,6 @@ function (_React$Component) {
   return ComboBox;
 }(_react.default.Component);
 
-var _default = ComboBox;
+var _default = (0, _Utils.createComboBox)(ComboBox);
+
 exports.default = _default;

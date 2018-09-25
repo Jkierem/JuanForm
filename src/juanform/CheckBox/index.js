@@ -1,5 +1,6 @@
 import React from 'react'
 import Styled from '../Styled'
+import { createCheckBox } from '../Utils'
 
 const StyledInput = Styled.Defaults.CheckBox
 
@@ -43,4 +44,4 @@ class CheckBox extends React.Component{
 	}
 }
 
-export default CheckBox;
+export default createCheckBox(CheckBox);

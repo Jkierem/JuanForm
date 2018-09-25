@@ -1,5 +1,6 @@
 import React from 'react'
 import Styled from '../Styled'
+import { createLabel } from '../Utils'
 
 const StyledLabel = Styled.Defaults.Label
 
@@ -12,4 +13,4 @@ class Label extends React.Component{
 	}
 }
 
-export default Label;
+export default createLabel(Label);

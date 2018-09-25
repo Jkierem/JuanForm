@@ -1,6 +1,6 @@
 import React from 'react'
 import Styled from '../Styled'
-import { prop } from '../resources/Utils'
+import { prop , createComboBox } from '../Utils'
 
 const StyledCombo = Styled.Defaults.ComboBox
 const StyledOption = Styled.Defaults.Option
@@ -70,4 +70,4 @@ class ComboBox extends React.Component{
 	}
 }
 
-export default ComboBox;
+export default createComboBox(ComboBox)

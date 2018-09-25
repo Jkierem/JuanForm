@@ -42,7 +42,8 @@ class Form extends React.Component{
 	};
 
 	transform = (child) =>{
-		if( child.type === Input ){
+		const { formElement:element } = child.type;
+		if( element === "Input" ){
 			if( child.props.type === "password" ){
 				return React.cloneElement(child,{
 					onChange: this.handlePasswordChange
@@ -52,7 +53,7 @@ class Form extends React.Component{
 					onChange: this.handleInputChange
 				})
 			}
-		}else if( child.type === Button ){
+		}else if( element === "Button" ){
 			if( child.props.submit ){
 				return React.cloneElement(child,{
 					onClick: this.handleSubmit
@@ -60,11 +61,11 @@ class Form extends React.Component{
 			}else{
 				return child
 			}
-		}else if( child.type === ComboBox ){
+		}else if( element === "ComboBox" ){
 			return React.cloneElement(child,{
 				onChange: this.handleInputChange
 			})
-		}else if( child.type === CheckBox ){
+		}else if( element === "CheckBox" ){
 			return React.cloneElement(child,{
 				onChange: this.handleInputChange
 			})
@@ -78,7 +79,7 @@ class Form extends React.Component{
 			if(child === null) {
 				return undefined;
 			}
-			if( child.type === Field ){
+			if( child.type.formElement === "Field" ){
 				return React.cloneElement(child,{
 					transform: this.transform
 				})

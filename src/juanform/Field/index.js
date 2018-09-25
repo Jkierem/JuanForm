@@ -1,5 +1,6 @@
 import React from 'react'
 import Styled from '../Styled'
+import { createField } from '../Utils'
 
 const StyledArticle = Styled.Defaults.Field
 
@@ -27,4 +28,4 @@ class Field extends React.Component{
 	}
 }
 
-export default Field;
+export default createField(Field);

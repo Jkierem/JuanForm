@@ -79,7 +79,9 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "transform", function (child) {
-      if (child.type === _.Input) {
+      var element = child.type.formElement;
+
+      if (element === "Input") {
         if (child.props.type === "password") {
           return _react.default.cloneElement(child, {
             onChange: _this.handlePasswordChange
@@ -89,7 +91,7 @@ function (_React$Component) {
             onChange: _this.handleInputChange
           });
         }
-      } else if (child.type === _.Button) {
+      } else if (element === "Button") {
         if (child.props.submit) {
           return _react.default.cloneElement(child, {
             onClick: _this.handleSubmit
@@ -97,11 +99,11 @@ function (_React$Component) {
         } else {
           return child;
         }
-      } else if (child.type === _.ComboBox) {
+      } else if (element === "ComboBox") {
         return _react.default.cloneElement(child, {
           onChange: _this.handleInputChange
         });
-      } else if (child.type === _.CheckBox) {
+      } else if (element === "CheckBox") {
         return _react.default.cloneElement(child, {
           onChange: _this.handleInputChange
         });
@@ -116,7 +118,7 @@ function (_React$Component) {
           return undefined;
         }
 
-        if (child.type === _.Field) {
+        if (child.type.formElement === "Field") {
           return _react.default.cloneElement(child, {
             transform: _this.transform
           });

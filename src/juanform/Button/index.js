@@ -1,5 +1,6 @@
 import React from 'react'
 import Styled from '../Styled'
+import { createButton } from '../Utils'
 
 const StyledButton = Styled.Defaults.Button;
 
@@ -28,4 +29,4 @@ class Button extends React.Component{
 	}
 }
 
-export default Button;
+export default createButton(Button);

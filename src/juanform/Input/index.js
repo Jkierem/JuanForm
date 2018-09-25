@@ -1,5 +1,6 @@
 import React from 'react'
 import Styled from '../Styled'
+import { createInput } from '../Utils'
 
 const StyledInput = Styled.Defaults.Input
 
@@ -44,4 +45,4 @@ class Input extends React.Component{
 	}
 }
 
-export default Input;
+export default createInput(Input);

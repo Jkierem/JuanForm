@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
-import { Form , Field , Button , CheckBox , ComboBox , Input , Label , Styled } from '../juanform'
+import { Form , Field , Button , CheckBox , ComboBox , Input , Label , Styled , Utils } from '../juanform'
+
+const { createInput } = Utils;
 
 const options = [
   {value:"1",label:"One"},
@@ -20,6 +22,17 @@ const PaddedDiv = styled.div`
 const CustomLabel = styled(Styled.Defaults.Label)`
   color: blue;
 `
+
+const CustomInput = styled(Styled.Defaults.Input)`
+  color: green;
+  border: none;
+  border-bottom: 1px solid green;
+  &:focus{
+    outline: none;
+  }
+`
+
+const MyInput = createInput((props)=><Input as={CustomInput} {...props}/>)
 
 class App extends React.Component{
 
@@ -65,6 +78,10 @@ class App extends React.Component{
           <Field>
             <Label as={CustomLabel} htmlFor={"text2"} >Text With Custom Label</Label>
             <Input id={"text2"} name="textFieldWithCustomLabel" placeholder={"Some text..."}/>
+          </Field>
+          <Field>
+            <Label htmlFor={"custom"}>This input is as custom as it gets</Label>
+            <MyInput id={"custom"} name={"customInput"} placeholder={"Custom input..."}/>
           </Field>
           <Field>
             <Label htmlFor={"check"} >CheckBox</Label>
