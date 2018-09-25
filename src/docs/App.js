@@ -17,9 +17,8 @@ const PaddedDiv = styled.div`
   padding: 10px;
 `
 
-const CustomLabel = Styled.Label`
+const CustomLabel = styled(Styled.Defaults.Label)`
   color: blue;
-  padding: 10px;
 `
 
 class App extends React.Component{
