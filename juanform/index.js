@@ -45,6 +45,12 @@ Object.defineProperty(exports, "Label", {
     return _Label.default;
   }
 });
+Object.defineProperty(exports, "Styled", {
+  enumerable: true,
+  get: function get() {
+    return _Styled.default;
+  }
+});
 
 var _Button = _interopRequireDefault(require("./Button"));
 
@@ -59,5 +65,7 @@ var _Form = _interopRequireDefault(require("./Form"));
 var _Input = _interopRequireDefault(require("./Input"));
 
 var _Label = _interopRequireDefault(require("./Label"));
+
+var _Styled = _interopRequireDefault(require("./Styled"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
