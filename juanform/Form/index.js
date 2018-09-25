@@ -109,7 +109,7 @@ function (_React$Component) {
       }
 
       if (_this.customTransform && typeof _this.customTransform === "function") {
-        resultingClone = _this.customTransform(resultingClone);
+        resultingClone = _this.customTransform(resultingClone, _assertThisInitialized(_assertThisInitialized(_this)));
       }
 
       return resultingClone;

@@ -70,7 +70,7 @@ class Form extends React.Component{
 			})
 		}
 		if( this.customTransform && typeof(this.customTransform) === "function"){
-			resultingClone = this.customTransform(resultingClone)
+			resultingClone = this.customTransform(resultingClone,this)
 		}
 		return resultingClone;
 	}
