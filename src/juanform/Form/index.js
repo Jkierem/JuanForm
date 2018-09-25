@@ -1,10 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
+import Styled from '../Styled'
 import { Button , Input , ComboBox , CheckBox , Field } from '../'
 
-const StyledForm = styled.form`
-	padding: 10px;
-`
+const StyledForm = Styled.Defaults.Form
 
 class Form extends React.Component{
 	constructor(props){

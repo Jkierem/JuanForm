@@ -1,9 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
+import Styled from '../Styled'
 
-const StyledArticle = styled.article`
-	padding: 5px
-`
+const StyledArticle = Styled.Defaults.Field
 
 //FieldWrapper for form inputs etc etc
 class Field extends React.Component{

@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
+var _Styled = _interopRequireDefault(require("../Styled"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33,10 +33,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var StyledButton = _styledComponents.default.button.withConfig({
-  displayName: "Button__StyledButton",
-  componentId: "sc-3god2t-0"
-})(["padding:5px"]);
+var StyledButton = _Styled.default.Defaults.Button;
 
 var Button =
 /*#__PURE__*/

@@ -1,12 +1,26 @@
 import React from 'react';
-import { Form , Field , Button , CheckBox , ComboBox , Input , Label } from '../juanform'
+import styled from 'styled-components'
+import { Form , Field , Button , CheckBox , ComboBox , Input , Label , Styled } from '../juanform'
 
 const options = [
   {value:"1",label:"One"},
   {value:"2",label:"Two"}
 ]
 
-const title = {"fontWeight":"bold", "fontSize":"120%", "padding":"5px"}
+const Title = styled.div`
+  font-weight: bold;
+  font-size: 120%;
+  padding: 5px;
+`
+
+const PaddedDiv = styled.div`
+  padding: 10px;
+`
+
+const CustomLabel = Styled.Label`
+  color: blue;
+  padding: 10px;
+`
 
 class App extends React.Component{
 
@@ -43,11 +57,15 @@ class App extends React.Component{
     const { submitted , state } = this.state;
     return(
       <React.Fragment>
-        <div style={title}>Form:</div>
+        <Title>Form:</Title>
         <Form id={"form"} onSubmit={this.handleSubmit}>
           <Field>
             <Label htmlFor={"text"} >Text</Label>
             <Input id={"text"} name="textField" placeholder={"Some text..."}/>
+          </Field>
+          <Field>
+            <Label as={CustomLabel} htmlFor={"text2"} >Text With Custom Label</Label>
+            <Input id={"text2"} name="textFieldWithCustomLabel" placeholder={"Some text..."}/>
           </Field>
           <Field>
             <Label htmlFor={"check"} >CheckBox</Label>
@@ -67,12 +85,12 @@ class App extends React.Component{
           <Button submit>Submit</Button>
         </Form>
         { submitted &&
-          <div>
-            <div style={title}>State:</div>
-            <div style={{"padding":"10px"}}>
+          <PaddedDiv>
+            <Title>State:</Title>
+            <PaddedDiv>
               {this.renderState()}
-            </div>
-          </div>
+            </PaddedDiv>
+          </PaddedDiv>
         }
       </React.Fragment>
     )

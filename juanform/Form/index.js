@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
+var _Styled = _interopRequireDefault(require("../Styled"));
 
 var _ = require("../");
 
@@ -33,10 +33,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var StyledForm = _styledComponents.default.form.withConfig({
-  displayName: "Form__StyledForm",
-  componentId: "sc-1dyl1fa-0"
-})(["padding:10px;"]);
+var StyledForm = _Styled.default.Defaults.Form;
 
 var Form =
 /*#__PURE__*/

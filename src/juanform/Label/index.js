@@ -1,9 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
+import Styled from '../Styled'
 
-const StyledLabel = styled.label`
-	padding: 10px;
-`
+const StyledLabel = Styled.Defaults.Label
 
 class Label extends React.Component{
 	render(){

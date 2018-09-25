@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
+var _Styled = _interopRequireDefault(require("../Styled"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29,10 +29,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var StyledLabel = _styledComponents.default.label.withConfig({
-  displayName: "Label__StyledLabel",
-  componentId: "icy0vi-0"
-})(["padding:10px;"]);
+var StyledLabel = _Styled.default.Defaults.Label;
 
 var Label =
 /*#__PURE__*/

@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
+var _Styled = _interopRequireDefault(require("../Styled"));
 
 var _Utils = require("../resources/Utils");
 
@@ -33,16 +33,8 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var StyledCombo = _styledComponents.default.select.withConfig({
-  displayName: "ComboBox__StyledCombo",
-  componentId: "oks0ih-0"
-})([""]);
-
-var StyledOption = _styledComponents.default.option.withConfig({
-  displayName: "ComboBox__StyledOption",
-  componentId: "oks0ih-1"
-})([""]);
-
+var StyledCombo = _Styled.default.Defaults.ComboBox;
+var StyledOption = _Styled.default.Defaults.Option;
 var getFirst = (0, _Utils.prop)("0");
 var getValue = (0, _Utils.prop)("value");
 

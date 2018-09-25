@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
+var _Styled = _interopRequireDefault(require("../Styled"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31,10 +31,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var StyledInput = _styledComponents.default.input.withConfig({
-  displayName: "CheckBox__StyledInput",
-  componentId: "sc-18bkv64-0"
-})([""]);
+var StyledInput = _Styled.default.Defaults.CheckBox;
 
 var CheckBox =
 /*#__PURE__*/

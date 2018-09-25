@@ -1,7 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
+import Styled from '../Styled'
 
-const StyledInput = styled.input``
+const StyledInput = Styled.Defaults.CheckBox
 
 class CheckBox extends React.Component{
 	constructor(props){

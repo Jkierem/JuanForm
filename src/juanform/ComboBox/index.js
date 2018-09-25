@@ -1,9 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
+import Styled from '../Styled'
 import { prop } from '../resources/Utils'
 
-const StyledCombo = styled.select``
-const StyledOption = styled.option``
+const StyledCombo = Styled.Defaults.ComboBox
+const StyledOption = Styled.Defaults.Option
 
 const getFirst = prop("0");
 const getValue = prop("value")

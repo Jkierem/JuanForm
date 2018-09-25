@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
+var _Styled = _interopRequireDefault(require("../Styled"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31,11 +31,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var StyledArticle = _styledComponents.default.article.withConfig({
-  displayName: "Field__StyledArticle",
-  componentId: "sc-6ge8k4-0"
-})(["padding:5px"]); //FieldWrapper for form inputs etc etc
-
+var StyledArticle = _Styled.default.Defaults.Field; //FieldWrapper for form inputs etc etc
 
 var Field =
 /*#__PURE__*/

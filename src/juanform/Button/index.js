@@ -1,9 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
+import Styled from '../Styled'
 
-const StyledButton = styled.button`
-	padding: 5px
-`
+const StyledButton = Styled.Defaults.Button;
 
 class Button extends React.Component{
 	constructor(props){
