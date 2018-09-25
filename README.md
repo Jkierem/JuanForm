@@ -66,6 +66,47 @@ class MyForm extends React.Component {
 }
 ```
 
+
+## Advanced: Changing the Default behavior of the Form component
+
+By default, all that the Form component does is iterate over its children, checking the "formElement" static attirbute of their classes to see how to bind the element to its state. The only condition is that the Form expects this components to return their information (id or name at least) when the proper event occurs. It will override the "onClick" and "onChange" props of every child component given that the formElement is one of the following strings: Button, Input, CheckBox, ComboBox, Field or Label (Field is a special case where the transform prop is added. Nothing is changed of Label as of yet). You can create valid Form components using the Utilities provided in the Utils module. The easiest way to do is without too much code is by returning a pre-built Form component inside your custom component like this:
+
+```javascript
+import React from 'react'
+import { Form , Input , Label , Utils } from 'juanform'
+const { createInput } = Utils;
+
+const CustomInput = createInput((props) => <Input {...props}/>)
+
+const MyForm = () => {
+  return(
+    <Form>
+      <Label>My Custom Input</Label>
+      <CustomInput/>
+    </Form>
+  )
+}
+
+```
+
+The utility functions don't do much. They only define a property inside the class prototype.
+There is also a way to change how the Form component transforms its children. Through the createCustomForm utility method. It receives a function and calls it with two parameters: the first is the child to be modified and the second is the instance of the Form component and must return the transformed child. This does not override the Form's default behavior. Only extends it. A simpel example:
+
+```javascript
+import React from 'react'
+import { Form , Utils } from 'juanform'
+const { createCustomForm } = Utils;
+
+const customTransformation = (child,form) => {
+  if( child.formElement === "custom" ){
+    child.transformed = true;
+  }
+  return child
+}
+
+const MyForm = createCustomForm(customTransformation);
+```
+
 ### Form
 
 Basic component of juanform. Saves the values of valid form components inside its state. Valid form components are Button, Input, ComboBox and CheckBox. The Field component is also valid but it is only a wrapper to add style.
