@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import { Form , Field , Button , CheckBox , ComboBox , Input , Label , Styled , Utils } from '../juanform'
 
-const { createInput } = Utils;
+const { createInput , createCustomForm } = Utils;
 
 const options = [
   {value:"1",label:"One"},

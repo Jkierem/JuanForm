@@ -80,36 +80,39 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "transform", function (child) {
       var element = child.type.formElement;
+      var resultingClone = child;
 
       if (element === "Input") {
         if (child.props.type === "password") {
-          return _react.default.cloneElement(child, {
+          resultingClone = _react.default.cloneElement(child, {
             onChange: _this.handlePasswordChange
           });
         } else {
-          return _react.default.cloneElement(child, {
+          resultingClone = _react.default.cloneElement(child, {
             onChange: _this.handleInputChange
           });
         }
       } else if (element === "Button") {
         if (child.props.submit) {
-          return _react.default.cloneElement(child, {
+          resultingClone = _react.default.cloneElement(child, {
             onClick: _this.handleSubmit
           });
-        } else {
-          return child;
         }
       } else if (element === "ComboBox") {
-        return _react.default.cloneElement(child, {
+        resultingClone = _react.default.cloneElement(child, {
           onChange: _this.handleInputChange
         });
       } else if (element === "CheckBox") {
-        return _react.default.cloneElement(child, {
+        resultingClone = _react.default.cloneElement(child, {
           onChange: _this.handleInputChange
         });
-      } else {
-        return child;
       }
+
+      if (_this.customTransform && typeof _this.customTransform === "function") {
+        resultingClone = _this.customTransform(resultingClone);
+      }
+
+      return resultingClone;
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "transformChildren", function () {

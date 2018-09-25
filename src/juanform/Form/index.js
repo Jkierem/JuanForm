@@ -43,35 +43,36 @@ class Form extends React.Component{
 
 	transform = (child) =>{
 		const { formElement:element } = child.type;
+		let resultingClone = child;
 		if( element === "Input" ){
 			if( child.props.type === "password" ){
-				return React.cloneElement(child,{
+				resultingClone = React.cloneElement(child,{
 					onChange: this.handlePasswordChange
 				})
 			}else{
-				return React.cloneElement(child,{
+				resultingClone = React.cloneElement(child,{
 					onChange: this.handleInputChange
 				})
 			}
 		}else if( element === "Button" ){
 			if( child.props.submit ){
-				return React.cloneElement(child,{
+				resultingClone = React.cloneElement(child,{
 					onClick: this.handleSubmit
 				})
-			}else{
-				return child
 			}
 		}else if( element === "ComboBox" ){
-			return React.cloneElement(child,{
+			resultingClone = React.cloneElement(child,{
 				onChange: this.handleInputChange
 			})
 		}else if( element === "CheckBox" ){
-			return React.cloneElement(child,{
+			resultingClone = React.cloneElement(child,{
 				onChange: this.handleInputChange
 			})
-		}else{
-			return child
 		}
+		if( this.customTransform && typeof(this.customTransform) === "function"){
+			resultingClone = this.customTransform(resultingClone)
+		}
+		return resultingClone;
 	}
 
 	transformChildren = () =>{
