@@ -65,11 +65,6 @@ function (_React$Component) {
       }
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handlePasswordChange", function (e, obj) {
-      //TODO: Handle password change: how should I store it in front end
-      _this.handleInputChange(e, obj);
-    });
-
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleSubmit", function (e) {
       e.preventDefault();
 
@@ -83,15 +78,9 @@ function (_React$Component) {
       var resultingClone = child;
 
       if (element === "Input") {
-        if (child.props.type === "password") {
-          resultingClone = _react.default.cloneElement(child, {
-            onChange: _this.handlePasswordChange
-          });
-        } else {
-          resultingClone = _react.default.cloneElement(child, {
-            onChange: _this.handleInputChange
-          });
-        }
+        resultingClone = _react.default.cloneElement(child, {
+          onChange: _this.handleInputChange
+        });
       } else if (element === "Button") {
         if (child.props.submit) {
           resultingClone = _react.default.cloneElement(child, {

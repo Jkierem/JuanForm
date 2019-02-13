@@ -29,11 +29,6 @@ class Form extends React.Component{
 		}
 	}
 
-	handlePasswordChange = (e,obj) =>{
-		//TODO: Handle password change: how should I store it in front end
-		this.handleInputChange(e,obj)
-	};
-
 	handleSubmit = (e) =>{
 		e.preventDefault();
 		if( this.props.onSubmit ){
@@ -45,15 +40,9 @@ class Form extends React.Component{
 		const { formElement:element } = child.type;
 		let resultingClone = child;
 		if( element === "Input" ){
-			if( child.props.type === "password" ){
-				resultingClone = React.cloneElement(child,{
-					onChange: this.handlePasswordChange
-				})
-			}else{
-				resultingClone = React.cloneElement(child,{
-					onChange: this.handleInputChange
-				})
-			}
+			resultingClone = React.cloneElement(child,{
+				onChange: this.handleInputChange
+			})
 		}else if( element === "Button" ){
 			if( child.props.submit ){
 				resultingClone = React.cloneElement(child,{

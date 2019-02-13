@@ -1,8 +1,12 @@
 import React from 'react';
 import styled from 'styled-components'
-import { Form , Field , Button , CheckBox , ComboBox , Input , Label , Styled , Utils } from '../juanform'
+import { Field , Button , CheckBox , ComboBox , Input , Label , Styled , Utils } from '../juanform'
 
 const { createInput , createCustomForm } = Utils;
+
+const customTransform = child => child.type.formElement === "Button" ? <div>{child}</div> : child
+
+const CustomForm = createCustomForm(customTransform)
 
 const options = [
   {value:"1",label:"One"},
@@ -69,8 +73,8 @@ class App extends React.Component{
     const { submitted , state } = this.state;
     return(
       <React.Fragment>
-        <Title>Form:</Title>
-        <Form id={"form"} onSubmit={this.handleSubmit}>
+        <Title>Custom Form:</Title>
+        <CustomForm id={"form"} onSubmit={this.handleSubmit}>
           <Field>
             <Label htmlFor={"text"} >Text</Label>
             <Input id={"text"} name="textField" placeholder={"Some text..."}/>
@@ -99,7 +103,7 @@ class App extends React.Component{
             </ComboBox>
           </Field>
           <Button submit>Submit</Button>
-        </Form>
+        </CustomForm>
         { submitted &&
           <PaddedDiv>
             <Title>State:</Title>

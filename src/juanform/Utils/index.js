@@ -1,10 +1,7 @@
 import Form from '../Form'
 
 export const prop = name => object => object ? object[name] : undefined ;
-export const set = name => info => object => {
-  if(object) object[name] = info;
-  return object ;
-}
+export const set = name => value => object => Object.assign(object, { [name]: value })
 
 export const createFormElement = set("formElement")
 export const createButton = createFormElement("Button");
@@ -15,9 +12,9 @@ export const createInput = createFormElement("Input")
 export const createLabel = createFormElement("Label")
 
 export const createCustomForm = funk => {
-  const Copy = Form;
-  Copy.prototype.customTransform = funk;
-  return Copy
+  const CustomForm = class extends Form {};
+  CustomForm.prototype.customTransform = funk;
+  return CustomForm
 }
 
 const Utils = {

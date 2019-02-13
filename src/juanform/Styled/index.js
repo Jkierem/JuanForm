@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Defaults from './defaults'
 
 const Styled = {
   Button: styled.button,
@@ -9,24 +10,7 @@ const Styled = {
   Input: styled.input,
   Label: styled.label,
   Option: styled.option,
-  Defaults:{
-    Button: styled.button`
-    	padding: 5px
-    `,
-    CheckBox: styled.input``,
-    ComboBox: styled.select``,
-    Field: styled.article`
-    	padding: 5px
-    `,
-    Form: styled.form`
-    	padding: 10px;
-    `,
-    Input: styled.input``,
-    Label: styled.label`
-    	padding: 10px;
-    `,
-    Option: styled.option``,
-  }
+  Defaults,
 }
 
 export default Styled;
