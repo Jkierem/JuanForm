@@ -30,7 +30,7 @@ class CheckBox extends React.Component{
 	}
 
 	render(){
-		const { label=false , name , id , as:StyledComponent=StyledInput} = this.props;
+		const { name , id , as:StyledComponent=StyledInput} = this.props;
 		const { isChecked } = this.state;
 		return(
 			<StyledComponent

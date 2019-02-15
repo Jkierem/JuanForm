@@ -1,6 +1,8 @@
 import React from 'react'
 import Styled from '../Styled'
 import { createInput } from '../Utils'
+import { Either , ValueOf , Find } from '../Utils/toolbox'
+import { Types } from './constants'
 
 const StyledInput = Styled.Defaults.Input
 
@@ -26,22 +28,26 @@ class Input extends React.Component{
 		}
 	}
 
+	findType(t){
+		return Either( Types )
+						( Find(t) ) //or
+						( ValueOf("text") )
+	}
+
 	render(){
 		const { id , name , type="text", placeholder , as:StyledComponent=StyledInput } = this.props
 		const { value } = this.state
-
-		if( type !== "radio" && type !== "checkbox"){
-			return(
-				<StyledComponent
-					id={id}
-					name={name}
-					onChange={this.handleChange}
-					placeholder={placeholder}
-					type={type}
-					value={value}
-				/>
-			);
-		}
+		const _type = this.findType(type)
+		return(
+			<StyledComponent
+				id={id}
+				name={name}
+				onChange={this.handleChange}
+				placeholder={placeholder}
+				type={_type}
+				value={value}
+			/>
+		);
 	}
 }
 

@@ -1,20 +1,27 @@
 import React from 'react'
 import Styled from '../Styled'
-import { prop , createComboBox } from '../Utils'
+import { prop , compose } from '../Utils/toolbox'
+import { createComboBox } from '../Utils/index.js'
 
 const StyledCombo = Styled.Defaults.ComboBox
 const StyledOption = Styled.Defaults.Option
 
 const getFirst = prop("0");
 const getValue = prop("value")
-const getFirstValue = obj => getValue(getFirst(obj))
+const getProps = prop("props")
+const getChildren = prop("children")
+
+const getFirstValue = compose( getValue , getFirst )
+const getPropsOfFirst = compose( getProps , getFirst )
+const getFirstGrandson = compose( getChildren , getPropsOfFirst )
+const getValueFromFirstChild = compose( getValue , getPropsOfFirst )
 
 class ComboBox extends React.Component{
 	constructor(props){
 		super(props);
 		const { value , options } = props;
 		const children = React.Children.toArray(props.children)
-		const defaultValue = value || getFirstValue(props.options) || children[0].props.value || children[0].props.children
+		const defaultValue = value || getFirstValue(props.options) || getValueFromFirstChild(children) || getFirstGrandson(children)
 		this.state={
 			value: defaultValue
 		}

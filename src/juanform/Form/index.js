@@ -1,6 +1,5 @@
 import React from 'react'
 import Styled from '../Styled'
-import { Button , Input , ComboBox , CheckBox , Field } from '../'
 
 const StyledForm = Styled.Defaults.Form
 
@@ -23,7 +22,7 @@ class Form extends React.Component{
 		}
 	};
 
-	handleChange = (s) =>{
+	handleChange = () =>{
 		if( this.props.onChange ){
 			this.props.onChange(this.state)
 		}
@@ -37,9 +36,17 @@ class Form extends React.Component{
 	};
 
 	transform = (child) =>{
-		const { formElement:element } = child.type;
+		const definedChild = child == null ? {} : {...child}
+		const { type={} } = definedChild
+		const { formElement:element } = type;
 		let resultingClone = child;
-		if( element === "Input" ){
+		if( child === null ){
+			resultingClone = undefined
+		}else if( element === "Field" ){
+			resultingClone = React.cloneElement(child,{
+				transform: this.transform
+			})
+		}else if( element === "Input" ){
 			resultingClone = React.cloneElement(child,{
 				onChange: this.handleInputChange
 			})
@@ -65,18 +72,7 @@ class Form extends React.Component{
 	}
 
 	transformChildren = () =>{
-		return React.Children.map(this.props.children,(child) => {
-			if(child === null) {
-				return undefined;
-			}
-			if( child.type.formElement === "Field" ){
-				return React.cloneElement(child,{
-					transform: this.transform
-				})
-			}else{
-				return this.transform(child)
-			}
-		})
+		return React.Children.map(this.props.children, this.transform)
 	}
 
 	render(){

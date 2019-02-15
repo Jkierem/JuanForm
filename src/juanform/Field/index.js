@@ -1,6 +1,7 @@
 import React from 'react'
 import Styled from '../Styled'
 import { createField } from '../Utils'
+import { identity } from '../Utils/toolbox'
 
 const StyledArticle = Styled.Defaults.Field
 
@@ -12,7 +13,7 @@ class Field extends React.Component{
 	}
 
 	transformChildren = () =>{
-		const { transform=(e)=>(e) } = this.props
+		const { transform=identity } = this.props
 		return React.Children.map(this.props.children,(child) => {
 			return transform(child)
 		})

@@ -9,7 +9,9 @@ var _react = _interopRequireDefault(require("react"));
 
 var _Styled = _interopRequireDefault(require("../Styled"));
 
-var _Utils = require("../Utils");
+var _toolbox = require("../Utils/toolbox");
+
+var _index = require("../Utils/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -35,12 +37,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var StyledCombo = _Styled.default.Defaults.ComboBox;
 var StyledOption = _Styled.default.Defaults.Option;
-var getFirst = (0, _Utils.prop)("0");
-var getValue = (0, _Utils.prop)("value");
-
-var getFirstValue = function getFirstValue(obj) {
-  return getValue(getFirst(obj));
-};
+var getFirst = (0, _toolbox.prop)("0");
+var getValue = (0, _toolbox.prop)("value");
+var getProps = (0, _toolbox.prop)("props");
+var getChildren = (0, _toolbox.prop)("children");
+var getFirstValue = (0, _toolbox.compose)(getValue, getFirst);
+var getPropsOfFirst = (0, _toolbox.compose)(getProps, getFirst);
+var getFirstGrandson = (0, _toolbox.compose)(getChildren, getPropsOfFirst);
+var getValueFromFirstChild = (0, _toolbox.compose)(getValue, getPropsOfFirst);
 
 var ComboBox =
 /*#__PURE__*/
@@ -97,7 +101,7 @@ function (_React$Component) {
 
     var children = _react.default.Children.toArray(props.children);
 
-    var defaultValue = value || getFirstValue(props.options) || children[0].props.value || children[0].props.children;
+    var defaultValue = value || getFirstValue(props.options) || getValueFromFirstChild(children) || getFirstGrandson(children);
     _this.state = {
       value: defaultValue
     };
@@ -143,6 +147,6 @@ function (_React$Component) {
   return ComboBox;
 }(_react.default.Component);
 
-var _default = (0, _Utils.createComboBox)(ComboBox);
+var _default = (0, _index.createComboBox)(ComboBox);
 
 exports.default = _default;
