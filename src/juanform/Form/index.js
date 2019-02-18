@@ -61,7 +61,9 @@ class Form extends React.Component{
 				})
 			break;
 			default:
-				resultingClone = undefined
+				if( child == null ){
+					resultingClone = undefined
+				}
 			break;
 		}
 		if( this.customTransform && typeof(this.customTransform) === "function"){
