@@ -11,6 +11,10 @@ var _Styled = _interopRequireDefault(require("../Styled"));
 
 var _Utils = require("../Utils");
 
+var _toolbox = require("../Utils/toolbox");
+
+var _constants = require("./constants");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -72,6 +76,12 @@ function (_React$Component) {
   }
 
   _createClass(Input, [{
+    key: "findType",
+    value: function findType(t) {
+      return (0, _toolbox.Either)(_constants.Types)((0, _toolbox.Find)(t)) //or
+      ((0, _toolbox.ValueOf)("text"));
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props2 = this.props,
@@ -84,16 +94,16 @@ function (_React$Component) {
           StyledComponent = _this$props2$as === void 0 ? StyledInput : _this$props2$as;
       var value = this.state.value;
 
-      if (type !== "radio" && type !== "checkbox") {
-        return _react.default.createElement(StyledComponent, {
-          id: id,
-          name: name,
-          onChange: this.handleChange,
-          placeholder: placeholder,
-          type: type,
-          value: value
-        });
-      }
+      var _type = this.findType(type);
+
+      return _react.default.createElement(StyledComponent, {
+        id: id,
+        name: name,
+        onChange: this.handleChange,
+        placeholder: placeholder,
+        type: _type,
+        value: value
+      });
     }
   }]);
 

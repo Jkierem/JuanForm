@@ -11,6 +11,8 @@ var _Styled = _interopRequireDefault(require("../Styled"));
 
 var _Utils = require("../Utils");
 
+var _toolbox = require("../Utils/toolbox");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -33,7 +35,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var StyledArticle = _Styled.default.Defaults.Field; //FieldWrapper for form inputs etc etc
+var StyledArticle = _Styled.default.Defaults.Field;
 
 var Field =
 /*#__PURE__*/
@@ -49,9 +51,7 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "transformChildren", function () {
       var _this$props$transform = _this.props.transform,
-          transform = _this$props$transform === void 0 ? function (e) {
-        return e;
-      } : _this$props$transform;
+          transform = _this$props$transform === void 0 ? _toolbox.identity : _this$props$transform;
       return _react.default.Children.map(_this.props.children, function (child) {
         return transform(child);
       });

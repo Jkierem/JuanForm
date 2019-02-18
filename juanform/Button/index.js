@@ -50,11 +50,10 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Button).call(this, props));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClick", function (e) {
-      e.preventDefault();
+      var _this$props$onClick, _this$props;
 
-      if (_this.props.onClick) {
-        _this.props.onClick(e, _objectSpread({}, _this.props));
-      }
+      e.preventDefault();
+      (_this$props$onClick = (_this$props = _this.props).onClick) === null || _this$props$onClick === void 0 ? void 0 : _this$props$onClick.call(_this$props, e, _objectSpread({}, _this.props));
     });
 
     _this.state = {};
@@ -64,11 +63,11 @@ function (_React$Component) {
   _createClass(Button, [{
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          id = _this$props.id,
-          _this$props$label = _this$props.label,
-          label = _this$props$label === void 0 ? this.props.children : _this$props$label,
-          as = _this$props.as;
+      var _this$props2 = this.props,
+          id = _this$props2.id,
+          _this$props2$label = _this$props2.label,
+          label = _this$props2$label === void 0 ? this.props.children : _this$props2$label,
+          as = _this$props2.as;
       var handleClick = this.handleClick;
       var StyledComponent = as ? as : StyledButton;
       return _react.default.createElement(StyledComponent, {

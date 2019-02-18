@@ -53,17 +53,16 @@ function (_React$Component) {
       _this.setState({
         isChecked: !isChecked
       }, function () {
+        var _this$props$onChange, _this$props2;
+
         var _this$props = _this.props,
             id = _this$props.id,
             name = _this$props.name;
-
-        if (_this.props.onChange) {
-          _this.props.onChange(e, {
-            id: id,
-            name: name,
-            value: _this.state.isChecked
-          });
-        }
+        (_this$props$onChange = (_this$props2 = _this.props).onChange) === null || _this$props$onChange === void 0 ? void 0 : _this$props$onChange.call(_this$props2, e, {
+          id: id,
+          name: name,
+          value: _this.state.isChecked
+        });
       });
     });
 
@@ -78,13 +77,11 @@ function (_React$Component) {
   _createClass(CheckBox, [{
     key: "render",
     value: function render() {
-      var _this$props2 = this.props,
-          _this$props2$label = _this$props2.label,
-          label = _this$props2$label === void 0 ? false : _this$props2$label,
-          name = _this$props2.name,
-          id = _this$props2.id,
-          _this$props2$as = _this$props2.as,
-          StyledComponent = _this$props2$as === void 0 ? StyledInput : _this$props2$as;
+      var _this$props3 = this.props,
+          name = _this$props3.name,
+          id = _this$props3.id,
+          _this$props3$as = _this$props3.as,
+          StyledComponent = _this$props3$as === void 0 ? StyledInput : _this$props3$as;
       var isChecked = this.state.isChecked;
       return _react.default.createElement(StyledComponent, {
         id: id,

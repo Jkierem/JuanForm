@@ -52,6 +52,8 @@ function (_React$Component) {
   _inherits(ComboBox, _React$Component);
 
   function ComboBox(props) {
+    var _props$onChange;
+
     var _this;
 
     _classCallCheck(this, ComboBox);
@@ -79,6 +81,8 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleChange", function (e) {
+      var _this$props$onChange, _this$props3;
+
       _this.setState({
         value: e.target.value
       });
@@ -86,14 +90,11 @@ function (_React$Component) {
       var _this$props2 = _this.props,
           id = _this$props2.id,
           name = _this$props2.name;
-
-      if (_this.props.onChange) {
-        _this.props.onChange(e, {
-          id: id,
-          name: name,
-          value: e.target.value
-        });
-      }
+      (_this$props$onChange = (_this$props3 = _this.props).onChange) === null || _this$props$onChange === void 0 ? void 0 : _this$props$onChange.call(_this$props3, e, {
+        id: id,
+        name: name,
+        value: e.target.value
+      });
     });
 
     var value = props.value,
@@ -107,27 +108,23 @@ function (_React$Component) {
     };
     var _id = props.id,
         _name = props.name;
-
-    if (props.onChange) {
-      props.onChange(null, {
-        id: _id,
-        name: _name,
-        value: _this.state.value
-      });
-    }
-
+    (_props$onChange = props.onChange) === null || _props$onChange === void 0 ? void 0 : _props$onChange.call(props, null, {
+      id: _id,
+      name: _name,
+      value: _this.state.value
+    });
     return _this;
   }
 
   _createClass(ComboBox, [{
     key: "render",
     value: function render() {
-      var _this$props3 = this.props,
-          id = _this$props3.id,
-          name = _this$props3.name,
-          _this$props3$as = _this$props3.as,
-          StyledComponent = _this$props3$as === void 0 ? StyledCombo : _this$props3$as,
-          options = _this$props3.options;
+      var _this$props4 = this.props,
+          id = _this$props4.id,
+          name = _this$props4.name,
+          _this$props4$as = _this$props4.as,
+          StyledComponent = _this$props4$as === void 0 ? StyledCombo : _this$props4$as,
+          options = _this$props4.options;
       var renderOptions = this.renderOptions;
       return _react.default.createElement(StyledComponent, {
         id: id,
