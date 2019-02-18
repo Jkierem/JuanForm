@@ -5,7 +5,6 @@ import { identity } from '../Utils/toolbox'
 
 const StyledArticle = Styled.Defaults.Field
 
-//FieldWrapper for form inputs etc etc
 class Field extends React.Component{
 	constructor(props){
 		super(props);
