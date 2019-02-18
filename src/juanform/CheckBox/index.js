@@ -19,13 +19,11 @@ class CheckBox extends React.Component{
 			isChecked: !isChecked
 		},()=>{
 			const { id , name } = this.props
-			if( this.props.onChange ){
-				this.props.onChange(e,{
-					id: id,
-					name: name,
-					value: this.state.isChecked
-				})
-			}
+			this.props.onChange?.(e,{
+				id: id,
+				name: name,
+				value: this.state.isChecked
+			})
 		})
 	}
 
