@@ -9,7 +9,7 @@ describe("Button behavior", () => {
   const eventSpy = sinon.spy()
   const mockEvent = createMockEvent(eventSpy)
 
-  it("should call work without onClick",() => {
+  it("should work without onClick",() => {
     shallowWrapper.simulate("click",mockEvent)
     expect(eventSpy.called).toBeTruthy()
   })

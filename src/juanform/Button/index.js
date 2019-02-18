@@ -12,11 +12,9 @@ class Button extends React.Component{
 
 	handleClick = (e) =>{
     e.preventDefault()
-		if( this.props.onClick ){
-			this.props.onClick(e,{
-				...this.props
-			})
-		}
+		this.props.onClick?.(e,{
+			...this.props
+		})
 	}
 
 	render(){
