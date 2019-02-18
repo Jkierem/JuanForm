@@ -31,7 +31,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var prop = function prop(name) {
   return function (object) {
-    return object ? object[name] : undefined;
+    return object === null || object === void 0 ? void 0 : object[name];
   };
 };
 
