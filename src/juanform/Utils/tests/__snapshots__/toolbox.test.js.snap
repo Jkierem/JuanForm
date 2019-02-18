@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolbox test should render a stub component 1`] = `
+exports[`Toolbox test Stub Component should render a stub component 1`] = `
 initialize {
   "0": Object {
     "attribs": Object {},

@@ -1,5 +1,5 @@
 import React from 'react'
-export const prop = name => object => object ? object[name] : undefined ;
+export const prop = name => object => object?.[name];
 export const set = name => value => object => Object.assign(object, { [name]: value })
 export const call = f => (...args) => (_this) => f.call(_this,...args)
 export const callInObject = (att, ...args) => obj => call(obj[att])(...args)(obj)
