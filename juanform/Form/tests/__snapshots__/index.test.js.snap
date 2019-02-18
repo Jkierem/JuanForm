@@ -1,19 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolbox test Stub Component should render a stub component 1`] = `
+exports[`Form rendering should render correctly 1`] = `
 initialize {
   "0": Object {
-    "attribs": Object {},
-    "children": Array [
-      Object {
-        "data": "Replacement",
-        "next": null,
-        "parent": [Circular],
-        "prev": null,
-        "type": "text",
-      },
-    ],
-    "name": "a",
+    "attribs": Object {
+      "class": "defaults__Form-sc-157ahxh-4 jQgEuT",
+    },
+    "children": Array [],
+    "name": "form",
     "namespace": "http://www.w3.org/1999/xhtml",
     "next": null,
     "parent": null,
@@ -33,8 +27,12 @@ initialize {
       "x-attribsPrefix": Object {},
     },
     "type": "tag",
-    "x-attribsNamespace": Object {},
-    "x-attribsPrefix": Object {},
+    "x-attribsNamespace": Object {
+      "class": undefined,
+    },
+    "x-attribsPrefix": Object {
+      "class": undefined,
+    },
   },
   "_root": [Circular],
   "length": 1,

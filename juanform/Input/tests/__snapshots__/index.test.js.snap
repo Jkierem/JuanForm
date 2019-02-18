@@ -1,19 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolbox test Stub Component should render a stub component 1`] = `
+exports[`Input rendering should render correctly 1`] = `
 initialize {
   "0": Object {
-    "attribs": Object {},
-    "children": Array [
-      Object {
-        "data": "Replacement",
-        "next": null,
-        "parent": [Circular],
-        "prev": null,
-        "type": "text",
-      },
-    ],
-    "name": "a",
+    "attribs": Object {
+      "class": "defaults__Input-sc-157ahxh-5 cskaoE",
+      "type": "text",
+      "value": "",
+    },
+    "children": Array [],
+    "name": "input",
     "namespace": "http://www.w3.org/1999/xhtml",
     "next": null,
     "parent": null,
@@ -33,8 +29,16 @@ initialize {
       "x-attribsPrefix": Object {},
     },
     "type": "tag",
-    "x-attribsNamespace": Object {},
-    "x-attribsPrefix": Object {},
+    "x-attribsNamespace": Object {
+      "class": undefined,
+      "type": undefined,
+      "value": undefined,
+    },
+    "x-attribsPrefix": Object {
+      "class": undefined,
+      "type": undefined,
+      "value": undefined,
+    },
   },
   "_root": [Circular],
   "length": 1,

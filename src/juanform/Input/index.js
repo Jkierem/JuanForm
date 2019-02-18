@@ -19,13 +19,11 @@ class Input extends React.Component{
 			value: e.target.value
 		})
 		const { id , name } = this.props
-		if( this.props.onChange ){
-			this.props.onChange(e,{
-				id: id,
-				name: name,
-				value: e.target.value
-			})
-		}
+		this.props.onChange?.(e,{
+			id: id,
+			name: name,
+			value: e.target.value
+		})
 	}
 
 	findType(t){

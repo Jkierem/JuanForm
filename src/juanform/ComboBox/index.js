@@ -26,13 +26,11 @@ class ComboBox extends React.Component{
 			value: defaultValue
 		}
 		const { id , name } = props
-		if( props.onChange ){
-			props.onChange(null,{
-				id: id,
-				name: name,
-				value: this.state.value
-			})
-		}
+		props.onChange?.(null,{
+			id: id,
+			name: name,
+			value: this.state.value
+		})
 	}
 
 	static Option(props){
@@ -57,13 +55,11 @@ class ComboBox extends React.Component{
 			value: e.target.value
 		})
 		const { id , name } = this.props
-		if( this.props.onChange ){
-			this.props.onChange(e,{
-				id: id,
-				name: name,
-				value: e.target.value
-			})
-		}
+		this.props.onChange?.(e,{
+			id: id,
+			name: name,
+			value: e.target.value
+		})
 	}
 
 	render(){

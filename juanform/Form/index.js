@@ -13,6 +13,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -57,42 +59,56 @@ function (_React$Component) {
       }
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleChange", function (s) {
-      if (_this.props.onChange) {
-        _this.props.onChange(_this.state);
-      }
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleChange", function () {
+      var _this$props$onChange, _this$props;
+
+      (_this$props$onChange = (_this$props = _this.props).onChange) === null || _this$props$onChange === void 0 ? void 0 : _this$props$onChange.call(_this$props, _this.state);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleSubmit", function (e) {
-      e.preventDefault();
+      var _this$props$onSubmit, _this$props2;
 
-      if (_this.props.onSubmit) {
-        _this.props.onSubmit(_this.state);
-      }
+      e.preventDefault();
+      (_this$props$onSubmit = (_this$props2 = _this.props).onSubmit) === null || _this$props$onSubmit === void 0 ? void 0 : _this$props$onSubmit.call(_this$props2, _this.state);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "transform", function (child) {
-      var element = child.type.formElement;
+      var definedChild = child == null ? {} : _objectSpread({}, child);
+      var _definedChild$type = definedChild.type,
+          type = _definedChild$type === void 0 ? {} : _definedChild$type;
+      var element = type.formElement;
       var resultingClone = child;
 
-      if (element === "Input") {
-        resultingClone = _react.default.cloneElement(child, {
-          onChange: _this.handleInputChange
-        });
-      } else if (element === "Button") {
-        if (child.props.submit) {
+      switch (element) {
+        case "Field":
           resultingClone = _react.default.cloneElement(child, {
-            onClick: _this.handleSubmit
+            transform: _this.transform
           });
-        }
-      } else if (element === "ComboBox") {
-        resultingClone = _react.default.cloneElement(child, {
-          onChange: _this.handleInputChange
-        });
-      } else if (element === "CheckBox") {
-        resultingClone = _react.default.cloneElement(child, {
-          onChange: _this.handleInputChange
-        });
+          break;
+
+        case "Button":
+          if (child.props.submit) {
+            resultingClone = _react.default.cloneElement(child, {
+              onClick: _this.handleSubmit
+            });
+          }
+
+          break;
+
+        case "Input":
+        case "ComboBox":
+        case "CheckBox":
+          resultingClone = _react.default.cloneElement(child, {
+            onChange: _this.handleInputChange
+          });
+          break;
+
+        default:
+          if (child == null) {
+            resultingClone = undefined;
+          }
+
+          break;
       }
 
       if (_this.customTransform && typeof _this.customTransform === "function") {
@@ -102,22 +118,6 @@ function (_React$Component) {
       return resultingClone;
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "transformChildren", function () {
-      return _react.default.Children.map(_this.props.children, function (child) {
-        if (child === null) {
-          return undefined;
-        }
-
-        if (child.type.formElement === "Field") {
-          return _react.default.cloneElement(child, {
-            transform: _this.transform
-          });
-        } else {
-          return _this.transform(child);
-        }
-      });
-    });
-
     _this.state = {};
     return _this;
   }
@@ -125,15 +125,15 @@ function (_React$Component) {
   _createClass(Form, [{
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          id = _this$props.id,
-          _this$props$as = _this$props.as,
-          StyledComponent = _this$props$as === void 0 ? StyledForm : _this$props$as;
+      var _this$props3 = this.props,
+          id = _this$props3.id,
+          _this$props3$as = _this$props3.as,
+          StyledComponent = _this$props3$as === void 0 ? StyledForm : _this$props3$as;
       var handleSubmit = this.handleSubmit;
       return _react.default.createElement(StyledComponent, {
         id: id,
         onSubmit: handleSubmit
-      }, this.transformChildren());
+      }, _react.default.Children.map(this.props.children, this.transform));
     }
   }]);
 

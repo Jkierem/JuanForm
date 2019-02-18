@@ -11,6 +11,10 @@ var _Styled = _interopRequireDefault(require("../Styled"));
 
 var _Utils = require("../Utils");
 
+var _toolbox = require("../Utils/toolbox");
+
+var _constants = require("./constants");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -48,6 +52,8 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Input).call(this, props));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleChange", function (e) {
+      var _this$props$onChange, _this$props2;
+
       _this.setState({
         value: e.target.value
       });
@@ -55,14 +61,11 @@ function (_React$Component) {
       var _this$props = _this.props,
           id = _this$props.id,
           name = _this$props.name;
-
-      if (_this.props.onChange) {
-        _this.props.onChange(e, {
-          id: id,
-          name: name,
-          value: e.target.value
-        });
-      }
+      (_this$props$onChange = (_this$props2 = _this.props).onChange) === null || _this$props$onChange === void 0 ? void 0 : _this$props$onChange.call(_this$props2, e, {
+        id: id,
+        name: name,
+        value: e.target.value
+      });
     });
 
     _this.state = {
@@ -72,28 +75,34 @@ function (_React$Component) {
   }
 
   _createClass(Input, [{
+    key: "findType",
+    value: function findType(t) {
+      return (0, _toolbox.Either)(_constants.Types)((0, _toolbox.Find)(t)) //or
+      ((0, _toolbox.ValueOf)("text"));
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this$props2 = this.props,
-          id = _this$props2.id,
-          name = _this$props2.name,
-          _this$props2$type = _this$props2.type,
-          type = _this$props2$type === void 0 ? "text" : _this$props2$type,
-          placeholder = _this$props2.placeholder,
-          _this$props2$as = _this$props2.as,
-          StyledComponent = _this$props2$as === void 0 ? StyledInput : _this$props2$as;
+      var _this$props3 = this.props,
+          id = _this$props3.id,
+          name = _this$props3.name,
+          _this$props3$type = _this$props3.type,
+          type = _this$props3$type === void 0 ? "text" : _this$props3$type,
+          placeholder = _this$props3.placeholder,
+          _this$props3$as = _this$props3.as,
+          StyledComponent = _this$props3$as === void 0 ? StyledInput : _this$props3$as;
       var value = this.state.value;
 
-      if (type !== "radio" && type !== "checkbox") {
-        return _react.default.createElement(StyledComponent, {
-          id: id,
-          name: name,
-          onChange: this.handleChange,
-          placeholder: placeholder,
-          type: type,
-          value: value
-        });
-      }
+      var _type = this.findType(type);
+
+      return _react.default.createElement(StyledComponent, {
+        id: id,
+        name: name,
+        onChange: this.handleChange,
+        placeholder: placeholder,
+        type: _type,
+        value: value
+      });
     }
   }]);
 

@@ -23,16 +23,12 @@ class Form extends React.Component{
 	};
 
 	handleChange = () =>{
-		if( this.props.onChange ){
-			this.props.onChange(this.state)
-		}
+		this.props.onChange?.(this.state)
 	}
 
 	handleSubmit = (e) =>{
 		e.preventDefault();
-		if( this.props.onSubmit ){
-			this.props.onSubmit(this.state)
-		}
+		this.props.onSubmit?.(this.state)
 	};
 
 	transform = (child) =>{
@@ -40,30 +36,31 @@ class Form extends React.Component{
 		const { type={} } = definedChild
 		const { formElement:element } = type;
 		let resultingClone = child;
-		if( child === null ){
-			resultingClone = undefined
-		}else if( element === "Field" ){
-			resultingClone = React.cloneElement(child,{
-				transform: this.transform
-			})
-		}else if( element === "Input" ){
-			resultingClone = React.cloneElement(child,{
-				onChange: this.handleInputChange
-			})
-		}else if( element === "Button" ){
-			if( child.props.submit ){
+		switch(element){
+			case "Field":
 				resultingClone = React.cloneElement(child,{
-					onClick: this.handleSubmit
+					transform: this.transform
 				})
-			}
-		}else if( element === "ComboBox" ){
-			resultingClone = React.cloneElement(child,{
-				onChange: this.handleInputChange
-			})
-		}else if( element === "CheckBox" ){
-			resultingClone = React.cloneElement(child,{
-				onChange: this.handleInputChange
-			})
+			break;
+			case "Button":
+				if( child.props.submit ){
+					resultingClone = React.cloneElement(child,{
+						onClick: this.handleSubmit
+					})
+				}
+			break;
+			case "Input":
+			case "ComboBox":
+			case "CheckBox":
+				resultingClone = React.cloneElement(child,{
+					onChange: this.handleInputChange
+				})
+			break;
+			default:
+				if( child == null ){
+					resultingClone = undefined
+				}
+			break;
 		}
 		if( this.customTransform && typeof(this.customTransform) === "function"){
 			resultingClone = this.customTransform(resultingClone,this)
@@ -71,16 +68,12 @@ class Form extends React.Component{
 		return resultingClone;
 	}
 
-	transformChildren = () =>{
-		return React.Children.map(this.props.children, this.transform)
-	}
-
 	render(){
 		const { id , as:StyledComponent=StyledForm } = this.props
 		const { handleSubmit } = this
 		return(
 			<StyledComponent id={id} onSubmit={handleSubmit}>
-				{this.transformChildren()}
+				{React.Children.map(this.props.children, this.transform)}
 			</StyledComponent>
 		);
 	}
