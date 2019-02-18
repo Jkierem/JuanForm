@@ -23,16 +23,12 @@ class Form extends React.Component{
 	};
 
 	handleChange = () =>{
-		if( this.props.onChange ){
-			this.props.onChange(this.state)
-		}
+		this.props.onChange?.(this.state)
 	}
 
 	handleSubmit = (e) =>{
 		e.preventDefault();
-		if( this.props.onSubmit ){
-			this.props.onSubmit(this.state)
-		}
+		this.props.onSubmit?.(this.state)
 	};
 
 	transform = (child) =>{
