@@ -72,16 +72,12 @@ class Form extends React.Component{
 		return resultingClone;
 	}
 
-	transformChildren = () =>{
-		return React.Children.map(this.props.children, this.transform)
-	}
-
 	render(){
 		const { id , as:StyledComponent=StyledForm } = this.props
 		const { handleSubmit } = this
 		return(
 			<StyledComponent id={id} onSubmit={handleSubmit}>
-				{this.transformChildren()}
+				{React.Children.map(this.props.children, this.transform)}
 			</StyledComponent>
 		);
 	}
