@@ -1,45 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Styled from '../Styled'
 import { createCheckBox } from '../Utils'
 
 const StyledInput = Styled.Defaults.CheckBox
 
-class CheckBox extends React.Component{
-	constructor(props){
-		super(props);
-		const { checked=false } = this.props;
-		this.state={
-			isChecked: checked
-		}
-	}
+const CheckBox = (props) => {
+	const { checked = false } = props;
+	const [isChecked, setChecked] = useState(checked);
 
-	handleChange = (e) => {
-		const { isChecked } = this.state;
-		this.setState({
-			isChecked: !isChecked
-		},()=>{
-			const { id , name } = this.props
-			this.props.onChange?.(e,{
-				id: id,
-				name: name,
-				value: this.state.isChecked
-			})
+	const handleChange = (e) => {
+		setChecked(!isChecked);
+		const { id, name } = props
+		props.onChange ?.(e, {
+			id: id,
+			name: name,
+			value: !isChecked,
 		})
 	}
 
-	render(){
-		const { name , id , as:StyledComponent=StyledInput} = this.props;
-		const { isChecked } = this.state;
-		return(
-			<StyledComponent
-				id={id}
-				type="checkbox"
-				value={name}
-				checked={isChecked}
-				onChange={this.handleChange}
-			/>
-		)
-	}
+	const { name, id, as: StyledComponent = StyledInput } = props;
+	return (
+		<StyledComponent
+			id={id}
+			type="checkbox"
+			value={name}
+			checked={isChecked}
+			onChange={handleChange}
+		/>
+	)
 }
 
 export default createCheckBox(CheckBox);
