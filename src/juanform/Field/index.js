@@ -5,27 +5,20 @@ import { identity } from '../Utils/toolbox'
 
 const StyledArticle = Styled.Defaults.Field
 
-class Field extends React.Component{
-	constructor(props){
-		super(props);
-		this.state={}
-	}
-
-	transformChildren = () =>{
-		const { transform=identity } = this.props
-		return React.Children.map(this.props.children,(child) => {
+const Field = (props) => {
+	const transformChildren = (props) => {
+		const { transform = identity } = props
+		return React.Children.map(props.children, (child) => {
 			return transform(child)
 		})
 	}
 
-	render(){
-		const { as:StyledComponent=StyledArticle } = this.props;
-		return(
-			<StyledComponent>
-				{this.transformChildren()}
-			</StyledComponent>
-		)
-	}
+	const { as: StyledComponent = StyledArticle } = props;
+	return (
+		<StyledComponent>
+			{transformChildren(props)}
+		</StyledComponent>
+	)
 }
 
 export default createField(Field);

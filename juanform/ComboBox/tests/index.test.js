@@ -8,6 +8,8 @@ var _enzyme = require("enzyme");
 
 var _toolbox = require("../../Utils/toolbox");
 
+var _testUtils = require("react-dom/test-utils");
+
 var _Styled = _interopRequireDefault(require("../../Styled"));
 
 var _ = _interopRequireDefault(require("../"));
@@ -51,26 +53,31 @@ describe("#ComboBox", function () {
       expect(onChangeSpy.args[0].value).toBeUndefined();
     });
     it("should call onChage prop when handleChange is triggered", function () {
-      wrapper.find("#test").props().handleChange(mockEvent);
-      expect(wrapper.state("value")).toEqual(mockTarget.value);
+      (0, _testUtils.act)(function () {
+        wrapper.find(_Styled.default.Defaults.ComboBox).props().onChange(mockEvent);
+      });
       expect(onChangeSpy.callCount).toBe(2);
+      expect(onChangeSpy.secondCall.args[1].value).toEqual(mockTarget.value);
     });
-    it("should set value to target value", function () {
-      var wrapper = (0, _enzyme.shallow)(_react.default.createElement(_.default, null));
-      wrapper.instance().handleChange(mockEvent);
-      expect(wrapper.state("value")).toEqual(mockTarget.value);
-    });
+
+    var someSpy = _sinon.default.spy();
+
+    var comboWithOptions = (0, _enzyme.mount)(_react.default.createElement(_.default, {
+      onChange: someSpy
+    }, _react.default.createElement(_.default.Option, {
+      value: "one"
+    }), _react.default.createElement(_.default.Option, {
+      value: "two"
+    })));
     it("should choose the first value of options", function () {
-      var comboWithOptions = (0, _enzyme.shallow)(_react.default.createElement(_.default, null, _react.default.createElement(_.default.Option, {
-        value: "one"
-      }), _react.default.createElement(_.default.Option, {
-        value: "two"
-      })));
-      expect(comboWithOptions.state("value")).toBe("one");
+      expect(someSpy.firstCall.args[1].value).toBe("one");
     });
+    someSpy.resetHistory();
+    var comboWithOptionsWithChildren = (0, _enzyme.shallow)(_react.default.createElement(_.default, {
+      onChange: someSpy
+    }, _react.default.createElement(_.default.Option, null, "One"), _react.default.createElement(_.default.Option, null, "Two")));
     it("should choose the first child of options", function () {
-      var comboWithOptions = (0, _enzyme.shallow)(_react.default.createElement(_.default, null, _react.default.createElement(_.default.Option, null, "One"), _react.default.createElement(_.default.Option, null, "Two")));
-      expect(comboWithOptions.state("value")).toBe("One");
+      expect(someSpy.firstCall.args[1].value).toBe("one");
     });
   });
   describe("ComboBox rendering", function () {
