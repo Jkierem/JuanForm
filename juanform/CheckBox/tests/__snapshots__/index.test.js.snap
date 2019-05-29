@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Checkbox rendering should match snapshot 1`] = `
+exports[`#Checkbox Checkbox rendering should match snapshot 1`] = `
 initialize {
   "0": Object {
     "attribs": Object {

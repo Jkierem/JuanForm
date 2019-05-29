@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ComboBox rendering should match snapshot 1`] = `
+exports[`#ComboBox ComboBox rendering should match snapshot 1`] = `
 initialize {
   "0": Object {
     "attribs": Object {
@@ -45,7 +45,7 @@ initialize {
 }
 `;
 
-exports[`ComboBox.Option rendering should match snapshot 1`] = `
+exports[`#ComboBox ComboBox.Option rendering should match snapshot 1`] = `
 initialize {
   "0": Object {
     "attribs": Object {

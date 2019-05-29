@@ -1,7 +1,7 @@
 import React from 'react'
-export const prop = name => object => object?.[name];
+export const prop = name => object => object ?.[name];
 export const set = name => value => object => Object.assign(object, { [name]: value })
-export const call = f => (...args) => (_this) => f.call(_this,...args)
+export const call = f => (...args) => (_this) => f.call(_this, ...args)
 export const callInObject = (att, ...args) => obj => call(obj[att])(...args)(obj)
 export const compose = (...fns) => fns.reduce((f, g) => (...args) => f(g(...args)))
 export const identity = a => a
@@ -13,13 +13,13 @@ export const Either = (data) => (right) => (left) => {
   return isDefined(r) ? r : left(data)
 }
 
-export const createMockEvent = (spy=identity, target={ value: "any" }) => ({
+export const createMockEvent = (spy = identity, target = { value: "any" }) => ({
   preventDefault: spy,
   target,
 })
 
 export class StubComponent extends React.Component {
-  render(){
+  render() {
     return <a>Replacement</a>
   }
 }
