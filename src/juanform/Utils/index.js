@@ -1,12 +1,7 @@
 import Form from '../Form'
-import { prop , set } from './toolbox'
+import { set, override } from './toolbox'
 
-export const createCustomForm = funk => {
-  const CustomForm = class extends Form {};
-  CustomForm.prototype.customTransform = funk;
-  return CustomForm
-}
-
+export const createCustomForm = (extra) => override(Form)({ customTransform: extra })
 export const createFormElement = set("formElement")
 export const createButton = createFormElement("Button");
 export const createCheckBox = createFormElement("CheckBox");

@@ -5,140 +5,111 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _Styled = _interopRequireDefault(require("../Styled"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var StyledForm = _Styled.default.Defaults.Form;
 
-var Form =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(Form, _React$Component);
-
-  function Form(props) {
-    var _this;
-
-    _classCallCheck(this, Form);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Form).call(this, props));
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleInputChange", function (e, obj) {
-      var id = obj.id,
-          name = obj.name,
-          value = obj.value;
-
-      if (name !== undefined) {
-        _this.setState(_defineProperty({}, name, value), _this.handleChange);
-      } else {
-        _this.setState(_defineProperty({}, id, value), _this.handleChange);
-      }
-    });
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleChange", function () {
-      var _this$props$onChange, _this$props;
-
-      (_this$props$onChange = (_this$props = _this.props).onChange) === null || _this$props$onChange === void 0 ? void 0 : _this$props$onChange.call(_this$props, _this.state);
-    });
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleSubmit", function (e) {
-      var _this$props$onSubmit, _this$props2;
-
-      e.preventDefault();
-      (_this$props$onSubmit = (_this$props2 = _this.props).onSubmit) === null || _this$props$onSubmit === void 0 ? void 0 : _this$props$onSubmit.call(_this$props2, _this.state);
-    });
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "transform", function (child) {
-      var definedChild = child == null ? {} : _objectSpread({}, child);
-      var _definedChild$type = definedChild.type,
-          type = _definedChild$type === void 0 ? {} : _definedChild$type;
-      var element = type.formElement;
-      var resultingClone = child;
-
-      switch (element) {
-        case "Field":
-          resultingClone = _react.default.cloneElement(child, {
-            transform: _this.transform
-          });
-          break;
-
-        case "Button":
-          if (child.props.submit) {
-            resultingClone = _react.default.cloneElement(child, {
-              onClick: _this.handleSubmit
-            });
-          }
-
-          break;
-
-        case "Input":
-        case "ComboBox":
-        case "CheckBox":
-          resultingClone = _react.default.cloneElement(child, {
-            onChange: _this.handleInputChange
-          });
-          break;
-
-        default:
-          if (child == null) {
-            resultingClone = undefined;
-          }
-
-          break;
-      }
-
-      if (_this.customTransform && typeof _this.customTransform === "function") {
-        resultingClone = _this.customTransform(resultingClone, _assertThisInitialized(_assertThisInitialized(_this)));
-      }
-
-      return resultingClone;
-    });
-
-    _this.state = {};
-    return _this;
+var reducer = function reducer(state, action) {
+  switch (action.type) {
+    case "INPUT":
+      var _action$data = action.data,
+          id = _action$data.id,
+          name = _action$data.name,
+          value = _action$data.value;
+      return _objectSpread({}, state, _defineProperty({}, name ? name : id, value));
   }
+};
 
-  _createClass(Form, [{
-    key: "render",
-    value: function render() {
-      var _this$props3 = this.props,
-          id = _this$props3.id,
-          _this$props3$as = _this$props3.as,
-          StyledComponent = _this$props3$as === void 0 ? StyledForm : _this$props3$as;
-      var handleSubmit = this.handleSubmit;
-      return _react.default.createElement(StyledComponent, {
-        id: id,
-        onSubmit: handleSubmit
-      }, _react.default.Children.map(this.props.children, this.transform));
+var Form = function Form(props) {
+  var _useReducer = (0, _react.useReducer)(reducer, {}),
+      _useReducer2 = _slicedToArray(_useReducer, 2),
+      state = _useReducer2[0],
+      dispatch = _useReducer2[1];
+
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    props.onSubmit(state);
+  };
+
+  var onInputChange = function onInputChange(e, obj) {
+    return dispatch({
+      type: "INPUT",
+      data: obj
+    });
+  };
+
+  var transform = function transform(child) {
+    var definedChild = child == null ? {} : _objectSpread({}, child);
+    var _definedChild$type = definedChild.type,
+        type = _definedChild$type === void 0 ? {} : _definedChild$type;
+    var element = type.formElement;
+    var resultingClone = child;
+
+    switch (element) {
+      case "Field":
+        resultingClone = _react.default.cloneElement(child, {
+          transform: transform
+        });
+        break;
+
+      case "Button":
+        if (child.props.submit) {
+          resultingClone = _react.default.cloneElement(child, {
+            onClick: handleSubmit
+          });
+        }
+
+        break;
+
+      case "Input":
+      case "ComboBox":
+      case "CheckBox":
+        resultingClone = _react.default.cloneElement(child, {
+          onChange: onInputChange
+        });
+        break;
+
+      default:
+        if (child == null) {
+          resultingClone = undefined;
+        }
+
+        break;
     }
-  }]);
 
-  return Form;
-}(_react.default.Component);
+    if (props.customTransform && typeof props.customTransform === "function") {
+      resultingClone = props.customTransform(resultingClone);
+    }
+
+    return resultingClone;
+  };
+
+  var id = props.id,
+      _props$as = props.as,
+      StyledComponent = _props$as === void 0 ? StyledForm : _props$as;
+  return _react.default.createElement(StyledComponent, {
+    id: id,
+    onSubmit: handleSubmit
+  }, _react.default.Children.map(props.children, transform));
+};
 
 var _default = Form;
 exports.default = _default;

@@ -1,82 +1,73 @@
-import React from 'react'
+import React, { useReducer } from 'react'
 import Styled from '../Styled'
 
 const StyledForm = Styled.Defaults.Form
 
-class Form extends React.Component{
-	constructor(props){
-		super(props);
-		this.state={}
+const reducer = (state, action) => {
+	switch (action.type) {
+		case "INPUT":
+			const { id, name, value } = action.data;
+			return {
+				...state,
+				[name ? name : id]: value,
+			}
 	}
+}
 
-	handleInputChange = (e,obj) =>{
-		let {id,name,value} = obj
-		if( name !== undefined ){
-			this.setState({
-				[name]: value
-			},this.handleChange)
-		}else{
-			this.setState({
-				[id]: value
-			},this.handleChange)
-		}
-	};
+const Form = (props) => {
 
-	handleChange = () =>{
-		this.props.onChange?.(this.state)
-	}
+	const [state, dispatch] = useReducer(reducer, {})
 
-	handleSubmit = (e) =>{
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		this.props.onSubmit?.(this.state)
+		props.onSubmit(state)
 	};
 
-	transform = (child) =>{
-		const definedChild = child == null ? {} : {...child}
-		const { type={} } = definedChild
-		const { formElement:element } = type;
+	const onInputChange = (e, obj) => dispatch({ type: "INPUT", data: obj })
+
+	const transform = (child) => {
+		const definedChild = child == null ? {} : { ...child }
+		const { type = {} } = definedChild
+		const { formElement: element } = type;
 		let resultingClone = child;
-		switch(element){
+		switch (element) {
 			case "Field":
-				resultingClone = React.cloneElement(child,{
-					transform: this.transform
+				resultingClone = React.cloneElement(child, {
+					transform,
 				})
-			break;
+				break;
 			case "Button":
-				if( child.props.submit ){
-					resultingClone = React.cloneElement(child,{
-						onClick: this.handleSubmit
+				if (child.props.submit) {
+					resultingClone = React.cloneElement(child, {
+						onClick: handleSubmit
 					})
 				}
-			break;
+				break;
 			case "Input":
 			case "ComboBox":
 			case "CheckBox":
-				resultingClone = React.cloneElement(child,{
-					onChange: this.handleInputChange
+				resultingClone = React.cloneElement(child, {
+					onChange: onInputChange,
 				})
-			break;
+				break;
 			default:
-				if( child == null ){
+				if (child == null) {
 					resultingClone = undefined
 				}
-			break;
+				break;
 		}
-		if( this.customTransform && typeof(this.customTransform) === "function"){
-			resultingClone = this.customTransform(resultingClone,this)
+		if (props.customTransform && typeof (props.customTransform) === "function") {
+			resultingClone = props.customTransform(resultingClone)
 		}
 		return resultingClone;
 	}
 
-	render(){
-		const { id , as:StyledComponent=StyledForm } = this.props
-		const { handleSubmit } = this
-		return(
-			<StyledComponent id={id} onSubmit={handleSubmit}>
-				{React.Children.map(this.props.children, this.transform)}
-			</StyledComponent>
-		);
-	}
+	const { id, as: StyledComponent = StyledForm } = props
+	return (
+		<StyledComponent id={id} onSubmit={handleSubmit}>
+			{React.Children.map(props.children, transform)}
+		</StyledComponent>
+	);
 }
 
 export default Form;

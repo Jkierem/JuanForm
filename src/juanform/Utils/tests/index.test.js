@@ -1,4 +1,4 @@
-import Utils , { createFormElement } from '../'
+import Utils, { createFormElement } from '../'
 const {
   createButton,
   createCheckBox,
@@ -10,11 +10,6 @@ const {
 } = Utils
 
 describe("Utils tests", () => {
-  it("should create a CustomForm", () => {
-    const fakeFunction = () => {}
-    const customForm = createCustomForm(fakeFunction)
-    expect(customForm.prototype.customTransform).toBe(fakeFunction)
-  })
   it("should create a function that sets formElement static value", () => {
     const result = createFormElement("type")({})
     expect(result.formElement).toBe("type")

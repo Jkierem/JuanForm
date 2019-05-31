@@ -1,4 +1,5 @@
 import React from 'react'
+import sinon from "sinon"
 import { render } from 'enzyme'
 import {
   prop,
@@ -10,7 +11,10 @@ import {
   Find,
   Either,
   createMockEvent,
-  StubComponent
+  StubComponent,
+  overrideProps,
+  callInObject,
+  call
 } from '../toolbox'
 
 describe("Toolbox test", () => {
@@ -35,11 +39,47 @@ describe("Toolbox test", () => {
     })
   })
 
+  describe("Call", () => {
+    it("should return a function that calls call method with proper args", () => {
+      const spy = sinon.spy();
+      function funk() {
+        spy(this);
+      }
+      const _this = "this"
+      call(funk)()(_this);
+      expect(spy.calledWith(_this)).toBeTruthy();
+    })
+  })
+
+  describe("OverrideProps", () => {
+    it("should override props", () => {
+      const spy = sinon.spy();
+      const over = { one: "argument" };
+      const args = { another: "arg" };
+      const overridedSpy = overrideProps(spy)(over);
+      overridedSpy(args);
+      const expected = { ...args, ...over }
+      expect(spy.calledWith(expected)).toBeTruthy();
+    })
+  })
+
+  describe("CallInObject", () => {
+    it("should call a method inside an object", () => {
+      const spy = sinon.spy();
+      const obj = {
+        myMethod: spy,
+      }
+      const arg = "argOne";
+      callInObject("myMethod", arg)(obj);
+      expect(spy.calledWith(arg)).toBeTruthy();
+    })
+  })
+
   describe("Compose", () => {
     it("should compose functions", () => {
       const arg = { some: { nested: { value: "here" } } }
       const normal = (obj) => prop("value")(prop("nested")(prop("some")(obj)))
-      const composed = compose( prop("value") , prop("nested") , prop("some") )
+      const composed = compose(prop("value"), prop("nested"), prop("some"))
       expect(composed(arg)).toBe(normal(arg))
     })
   })
@@ -52,9 +92,9 @@ describe("Toolbox test", () => {
 
     it("should not alter a composition", () => {
       const obj = { some: { nested: "value" } }
-      const comp = compose( prop("nested") , prop("some") )
-      const compWithIdentity = compose( identity , prop("nested") , identity , prop("some") , identity )
-      expect( compWithIdentity(obj) ).toEqual( comp(obj) )
+      const comp = compose(prop("nested"), prop("some"))
+      const compWithIdentity = compose(identity, prop("nested"), identity, prop("some"), identity)
+      expect(compWithIdentity(obj)).toEqual(comp(obj))
     })
   })
 
@@ -85,13 +125,13 @@ describe("Toolbox test", () => {
 
   describe("Find", () => {
     it("should return a value in an array", () => {
-      const arr = [1,2,3,4]
+      const arr = [1, 2, 3, 4]
       const found = Find(2)(arr)
       expect(found).toBe(2)
     })
 
     it("should return undefined when value is not in array", () => {
-      const arr = [1,2,3,4]
+      const arr = [1, 2, 3, 4]
       const found = Find(5)(arr)
       expect(found).toBeUndefined()
     })
@@ -117,7 +157,7 @@ describe("Toolbox test", () => {
     it("should create a default mock event", () => {
       const event = {
         preventDefault: identity,
-        target: { value : "any" }
+        target: { value: "any" }
       }
       expect(createMockEvent()).toEqual(event)
     })
@@ -129,7 +169,7 @@ describe("Toolbox test", () => {
         preventDefault: fake,
         target,
       }
-      expect(createMockEvent(fake,target)).toEqual(event)
+      expect(createMockEvent(fake, target)).toEqual(event)
     })
   })
 
