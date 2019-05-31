@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.StubComponent = exports.createMockEvent = exports.Either = exports.Find = exports.ValueOf = exports.isDefined = exports.identity = exports.compose = exports.callInObject = exports.call = exports.set = exports.prop = void 0;
+exports.StubComponent = exports.createMockEvent = exports.Either = exports.Find = exports.JustOf = exports.isDefined = exports.identity = exports.compose = exports.callInObject = exports.overrideProps = exports.call = exports.set = exports.prop = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -26,6 +26,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -60,6 +62,16 @@ var call = function call(f) {
 };
 
 exports.call = call;
+
+var overrideProps = function overrideProps(f) {
+  return function (overrides) {
+    return function (props) {
+      return f(_objectSpread({}, props, overrides));
+    };
+  };
+};
+
+exports.overrideProps = overrideProps;
 
 var callInObject = function callInObject(att) {
   for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
@@ -99,13 +111,13 @@ var isDefined = function isDefined(a) {
 
 exports.isDefined = isDefined;
 
-var ValueOf = function ValueOf(a) {
+var JustOf = function JustOf(a) {
   return function () {
     return a;
   };
 };
 
-exports.ValueOf = ValueOf;
+exports.JustOf = JustOf;
 
 var Find = function Find(value) {
   return function (data) {

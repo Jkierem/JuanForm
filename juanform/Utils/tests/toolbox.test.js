@@ -2,11 +2,17 @@
 
 var _react = _interopRequireDefault(require("react"));
 
+var _sinon = _interopRequireDefault(require("sinon"));
+
 var _enzyme = require("enzyme");
 
 var _toolbox = require("../toolbox");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 describe("Toolbox test", function () {
   describe("Prop", function () {
@@ -27,6 +33,49 @@ describe("Toolbox test", function () {
     it("should set a property", function () {
       var obj = (0, _toolbox.set)("some")("value")({});
       expect(obj.some).toBe("value");
+    });
+  });
+  describe("Call", function () {
+    it("should return a function that calls call method with proper args", function () {
+      var spy = _sinon.default.spy();
+
+      function funk() {
+        spy(this);
+      }
+
+      var _this = "this";
+      (0, _toolbox.call)(funk)()(_this);
+      expect(spy.calledWith(_this)).toBeTruthy();
+    });
+  });
+  describe("OverrideProps", function () {
+    it("should override props", function () {
+      var spy = _sinon.default.spy();
+
+      var over = {
+        one: "argument"
+      };
+      var args = {
+        another: "arg"
+      };
+      var overridedSpy = (0, _toolbox.overrideProps)(spy)(over);
+      overridedSpy(args);
+
+      var expected = _objectSpread({}, args, over);
+
+      expect(spy.calledWith(expected)).toBeTruthy();
+    });
+  });
+  describe("CallInObject", function () {
+    it("should call a method inside an object", function () {
+      var spy = _sinon.default.spy();
+
+      var obj = {
+        myMethod: spy
+      };
+      var arg = "argOne";
+      (0, _toolbox.callInObject)("myMethod", arg)(obj);
+      expect(spy.calledWith(arg)).toBeTruthy();
     });
   });
   describe("Compose", function () {
@@ -80,10 +129,10 @@ describe("Toolbox test", function () {
       expect((0, _toolbox.isDefined)(undefined)).toBeFalsy();
     });
   });
-  describe("ValueOf", function () {
+  describe("JustOf", function () {
     it("should return a function that resolves to value", function () {
       var value = "stringsAreCool";
-      var someValue = (0, _toolbox.ValueOf)(value);
+      var someValue = (0, _toolbox.JustOf)(value);
       expect(someValue()).toBe(value);
     });
   });
@@ -101,14 +150,14 @@ describe("Toolbox test", function () {
   });
   describe("Either", function () {
     it("should return right of data when defined", function () {
-      var right = (0, _toolbox.ValueOf)("some");
-      var left = (0, _toolbox.ValueOf)("not");
+      var right = (0, _toolbox.JustOf)("some");
+      var left = (0, _toolbox.JustOf)("not");
       var either = (0, _toolbox.Either)([])(right)(left);
       expect(either).toBe(right());
     });
     it("should return left when right is undefined", function () {
-      var right = (0, _toolbox.ValueOf)(undefined);
-      var left = (0, _toolbox.ValueOf)("not");
+      var right = (0, _toolbox.JustOf)(undefined);
+      var left = (0, _toolbox.JustOf)("not");
       var either = (0, _toolbox.Either)([])(right)(left);
       expect(either).toBe(left());
     });

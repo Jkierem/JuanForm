@@ -12,12 +12,6 @@ var createButton = _.default.createButton,
     createLabel = _.default.createLabel,
     createCustomForm = _.default.createCustomForm;
 describe("Utils tests", function () {
-  it("should create a CustomForm", function () {
-    var fakeFunction = function fakeFunction() {};
-
-    var customForm = createCustomForm(fakeFunction);
-    expect(customForm.prototype.customTransform).toBe(fakeFunction);
-  });
   it("should create a function that sets formElement static value", function () {
     var result = (0, _.createFormElement)("type")({});
     expect(result.formElement).toBe("type");
