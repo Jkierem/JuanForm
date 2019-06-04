@@ -1,52 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Styled from '../Styled'
 import { createInput } from '../Utils'
-import { Either , ValueOf , Find } from '../Utils/toolbox'
+import { Either, JustOf, Find } from '../Utils/toolbox'
 import { Types } from './constants'
 
 const StyledInput = Styled.Defaults.Input
 
-class Input extends React.Component{
-	constructor(props){
-		super(props);
-		this.state={
-			value: ""
-		}
-	}
+export const findType = (t) => {
+	return Either(Types)
+		(Find(t)) //or
+		(JustOf("text"))
+}
 
-	handleChange = (e) => {
-		this.setState({
-			value: e.target.value
+const Input = (props) => {
+
+	const [value, setValue] = useState('');
+
+	const handleChange = (e) => {
+		setValue(e.target.value);
+		const { id, name } = props;
+		props.onChange(e, {
+			id,
+			name,
+			value: e.target.value,
 		})
-		const { id , name } = this.props
-		this.props.onChange?.(e,{
-			id: id,
-			name: name,
-			value: e.target.value
-		})
 	}
 
-	findType(t){
-		return Either( Types )
-						( Find(t) ) //or
-						( ValueOf("text") )
-	}
-
-	render(){
-		const { id , name , type="text", placeholder , as:StyledComponent=StyledInput } = this.props
-		const { value } = this.state
-		const _type = this.findType(type)
-		return(
-			<StyledComponent
-				id={id}
-				name={name}
-				onChange={this.handleChange}
-				placeholder={placeholder}
-				type={_type}
-				value={value}
-			/>
-		);
-	}
+	const { id, name, type = "text", placeholder, as: StyledComponent = StyledInput } = props
+	const _type = findType(type)
+	return (
+		<StyledComponent
+			id={id}
+			name={name}
+			onChange={handleChange}
+			placeholder={placeholder}
+			type={_type}
+			value={value}
+		/>
+	);
 }
 
 export default createInput(Input);

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Input rendering should render correctly 1`] = `
+exports[`#Input Input rendering should render correctly 1`] = `
 initialize {
   "0": Object {
     "attribs": Object {

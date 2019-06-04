@@ -3,9 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.default = exports.findType = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _Styled = _interopRequireDefault(require("../Styled"));
 
@@ -17,97 +17,61 @@ var _constants = require("./constants");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var StyledInput = _Styled.default.Defaults.Input;
 
-var Input =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(Input, _React$Component);
+var findType = function findType(t) {
+  return (0, _toolbox.Either)(_constants.Types)((0, _toolbox.Find)(t)) //or
+  ((0, _toolbox.JustOf)("text"));
+};
 
-  function Input(props) {
-    var _this;
+exports.findType = findType;
 
-    _classCallCheck(this, Input);
+var Input = function Input(props) {
+  var _useState = (0, _react.useState)(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      value = _useState2[0],
+      setValue = _useState2[1];
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Input).call(this, props));
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleChange", function (e) {
-      var _this$props$onChange, _this$props2;
-
-      _this.setState({
-        value: e.target.value
-      });
-
-      var _this$props = _this.props,
-          id = _this$props.id,
-          name = _this$props.name;
-      (_this$props$onChange = (_this$props2 = _this.props).onChange) === null || _this$props$onChange === void 0 ? void 0 : _this$props$onChange.call(_this$props2, e, {
-        id: id,
-        name: name,
-        value: e.target.value
-      });
+  var handleChange = function handleChange(e) {
+    setValue(e.target.value);
+    var id = props.id,
+        name = props.name;
+    props.onChange(e, {
+      id: id,
+      name: name,
+      value: e.target.value
     });
+  };
 
-    _this.state = {
-      value: ""
-    };
-    return _this;
-  }
+  var id = props.id,
+      name = props.name,
+      _props$type = props.type,
+      type = _props$type === void 0 ? "text" : _props$type,
+      placeholder = props.placeholder,
+      _props$as = props.as,
+      StyledComponent = _props$as === void 0 ? StyledInput : _props$as;
 
-  _createClass(Input, [{
-    key: "findType",
-    value: function findType(t) {
-      return (0, _toolbox.Either)(_constants.Types)((0, _toolbox.Find)(t)) //or
-      ((0, _toolbox.ValueOf)("text"));
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$props3 = this.props,
-          id = _this$props3.id,
-          name = _this$props3.name,
-          _this$props3$type = _this$props3.type,
-          type = _this$props3$type === void 0 ? "text" : _this$props3$type,
-          placeholder = _this$props3.placeholder,
-          _this$props3$as = _this$props3.as,
-          StyledComponent = _this$props3$as === void 0 ? StyledInput : _this$props3$as;
-      var value = this.state.value;
+  var _type = findType(type);
 
-      var _type = this.findType(type);
-
-      return _react.default.createElement(StyledComponent, {
-        id: id,
-        name: name,
-        onChange: this.handleChange,
-        placeholder: placeholder,
-        type: _type,
-        value: value
-      });
-    }
-  }]);
-
-  return Input;
-}(_react.default.Component);
+  return _react.default.createElement(StyledComponent, {
+    id: id,
+    name: name,
+    onChange: handleChange,
+    placeholder: placeholder,
+    type: _type,
+    value: value
+  });
+};
 
 var _default = (0, _Utils.createInput)(Input);
 
