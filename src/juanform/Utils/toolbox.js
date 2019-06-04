@@ -19,8 +19,6 @@ export const createMockEvent = (spy = identity, target = { value: "any" }) => ({
   target,
 })
 
-export class StubComponent extends React.Component {
-  render() {
-    return <a>Replacement</a>
-  }
+export const StubComponent = (props) => {
+  return <a>Replacement</a>
 }
