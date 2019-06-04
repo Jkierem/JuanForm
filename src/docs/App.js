@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components'
-import { Field , Button , CheckBox , ComboBox , Input , Label , Styled , Utils } from '../juanform'
+import { Field, Button, CheckBox, ComboBox, Input, Label, Styled, Utils } from '../juanform'
 
-const { createInput , createCustomForm } = Utils;
+const { createInput, createCustomForm } = Utils;
 
 const customTransform = child => child.type.formElement === "Button" ? <div>{child}</div> : child
 
 const CustomForm = createCustomForm(customTransform)
 
 const options = [
-  {value:"1",label:"One"},
-  {value:"2",label:"Two"}
+  { value: "1", label: "One" },
+  { value: "2", label: "Two" }
 ]
 
 const Title = styled.div`
@@ -36,11 +36,11 @@ const CustomInput = styled(Styled.Defaults.Input)`
   }
 `
 
-const MyInput = createInput((props)=><Input as={CustomInput} {...props}/>)
+const MyInput = createInput((props) => <Input as={CustomInput} {...props} />)
 
-class App extends React.Component{
+class App extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       submitted: false
@@ -48,7 +48,7 @@ class App extends React.Component{
   }
 
   handleSubmit = (state) => {
-    this.setState({ submitted: true , form: state });
+    this.setState({ submitted: true, form: state });
     console.log(state);
   }
 
@@ -69,23 +69,23 @@ class App extends React.Component{
     return text;
   }
 
-  render(){
-    const { submitted , state } = this.state;
-    return(
+  render() {
+    const { submitted, state } = this.state;
+    return (
       <React.Fragment>
         <Title>Custom Form:</Title>
         <CustomForm id={"form"} onSubmit={this.handleSubmit}>
           <Field>
             <Label htmlFor={"text"} >Text</Label>
-            <Input id={"text"} name="textField" placeholder={"Some text..."}/>
+            <Input id={"text"} name="textField" placeholder={"Some text..."} />
           </Field>
           <Field>
             <Label as={CustomLabel} htmlFor={"text2"} >Text With Custom Label</Label>
-            <Input id={"text2"} name="textFieldWithCustomLabel" placeholder={"Some text..."}/>
+            <Input id={"text2"} name="textFieldWithCustomLabel" placeholder={"Some text..."} />
           </Field>
           <Field>
             <Label htmlFor={"custom"}>This input is as custom as it gets</Label>
-            <MyInput id={"custom"} name={"customInput"} placeholder={"Custom input..."}/>
+            <MyInput id={"custom"} name={"customInput"} placeholder={"Custom input..."} />
           </Field>
           <Field>
             <Label htmlFor={"check"} >CheckBox</Label>
@@ -93,7 +93,7 @@ class App extends React.Component{
           </Field>
           <Field>
             <Label htmlFor={"combo"} >ComboBox</Label>
-            <ComboBox id={"combo"} name={"comboBox"} options={options}/>
+            <ComboBox id={"combo"} name={"comboBox"} options={options} />
           </Field>
           <Field>
             <Label htmlFor={"combo2"}>Another ComboBox</Label>
@@ -104,7 +104,7 @@ class App extends React.Component{
           </Field>
           <Button submit>Submit</Button>
         </CustomForm>
-        { submitted &&
+        {submitted &&
           <PaddedDiv>
             <Title>State:</Title>
             <PaddedDiv>

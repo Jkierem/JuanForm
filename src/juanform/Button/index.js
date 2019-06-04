@@ -4,27 +4,22 @@ import { createButton } from '../Utils'
 
 const StyledButton = Styled.Defaults.Button;
 
-class Button extends React.Component{
-	constructor(props){
-		super(props);
-		this.state={}
+const Button = (props) => {
+	const handleClick = (e) => {
+		e.preventDefault()
+		if (props.onClick) {
+			props.onClick(e, {
+				...props
+			})
+		}
 	}
 
-	handleClick = (e) =>{
-    e.preventDefault()
-		this.props.onClick?.(e,{
-			...this.props
-		})
-	}
+	const { id, label = props.children, as } = props
+	const StyledComponent = as ? as : StyledButton;
 
-	render(){
-		const { id , label=this.props.children , as } = this.props
-		const { handleClick } = this
-		const StyledComponent = as ? as : StyledButton;
-		return(
-			<StyledComponent id={id} onClick={handleClick} >{label}</StyledComponent>
-		);
-	}
+	return (
+		<StyledComponent id={id} onClick={handleClick} >{label}</StyledComponent>
+	);
 }
 
 export default createButton(Button);

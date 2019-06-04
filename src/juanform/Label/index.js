@@ -4,13 +4,11 @@ import { createLabel } from '../Utils'
 
 const StyledLabel = Styled.Defaults.Label
 
-class Label extends React.Component{
-	render(){
-		const { htmlFor , id , as:StyledComponent=StyledLabel } = this.props;
-		return(
-			<StyledComponent id={id} htmlFor={htmlFor} >{this.props.children }</StyledComponent>
-		);
-	}
+const Label = (props) => {
+	const { htmlFor, id, as: StyledComponent = StyledLabel } = props;
+	return (
+		<StyledComponent id={id} htmlFor={htmlFor} >{props.children}</StyledComponent>
+	);
 }
 
 export default createLabel(Label);
