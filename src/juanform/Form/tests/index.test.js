@@ -68,7 +68,6 @@ describe("#Form", () => {
     it("should call customTransform when defined", () => {
       expect(transformSpy.callCount).toBe(3)
     })
-
   })
 
   describe("Form behavior", () => {
@@ -125,7 +124,6 @@ describe("#Form", () => {
       expect(onSubmitSpy.callCount).toBe(1)
       expect(preventDefaultSpy.callCount).toBe(1)
     })
-
   })
 
   describe("Form rendering", () => {
