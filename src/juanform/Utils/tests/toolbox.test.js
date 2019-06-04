@@ -14,7 +14,8 @@ import {
   StubComponent,
   overrideProps,
   callInObject,
-  call
+  call,
+  isAnyOf
 } from '../toolbox'
 
 describe("Toolbox test", () => {
@@ -95,6 +96,19 @@ describe("Toolbox test", () => {
       const comp = compose(prop("nested"), prop("some"))
       const compWithIdentity = compose(identity, prop("nested"), identity, prop("some"), identity)
       expect(compWithIdentity(obj)).toEqual(comp(obj))
+    })
+  })
+
+  describe("IsAnyOf", () => {
+    it("should return true if one of the values", () => {
+      const values = ["one", "two", "three"];
+      const result = isAnyOf(...values)("two");
+      expect(result).toBeTruthy();
+    })
+    it("should return false if not one of the values", () => {
+      const values = ["one", "two", "three"];
+      const result = isAnyOf(...values)("four");
+      expect(result).toBeFalsy();
     })
   })
 

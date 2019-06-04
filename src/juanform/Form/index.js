@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react'
 import Styled from '../Styled'
+import { isAnyOf } from '../Utils/toolbox';
 
 const StyledForm = Styled.Defaults.Form
 
@@ -21,31 +22,27 @@ export const createTransform = ({ props, onSubmit, onInputChange, transform }) =
 	const { type = {} } = definedChild
 	const { formElement: element } = type;
 	let resultingClone = child;
-	switch (element) {
-		case "Field":
+	const isFieldType = isAnyOf("Field");
+	const isClickType = isAnyOf("Button");
+	const isChangeType = isAnyOf("Input", "ComboBox", "CheckBox");
+	if (isFieldType(element)) {
+		resultingClone = React.cloneElement(child, {
+			transform: createTransform({ props, onSubmit, onInputChange }),
+		})
+	} else if (isClickType(element)) {
+		if (child.props.submit) {
 			resultingClone = React.cloneElement(child, {
-				transform: createTransform({ props, onSubmit, onInputChange }),
+				onClick: onSubmit
 			})
-			break;
-		case "Button":
-			if (child.props.submit) {
-				resultingClone = React.cloneElement(child, {
-					onClick: onSubmit
-				})
-			}
-			break;
-		case "Input":
-		case "ComboBox":
-		case "CheckBox":
-			resultingClone = React.cloneElement(child, {
-				onChange: onInputChange,
-			})
-			break;
-		default:
-			if (child == null) {
-				resultingClone = undefined
-			}
-			break;
+		}
+	} else if (isChangeType(element)) {
+		resultingClone = React.cloneElement(child, {
+			onChange: onInputChange,
+		})
+	} else {
+		if (child == null) {
+			resultingClone = undefined
+		}
 	}
 	if (props.customTransform && typeof (props.customTransform) === "function") {
 		resultingClone = props.customTransform(resultingClone)

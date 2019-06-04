@@ -6,6 +6,7 @@ export const overrideProps = f => (overrides) => (props) => f({ ...props, ...ove
 export const callInObject = (att, ...args) => obj => call(obj[att])(...args)(obj)
 export const compose = (...fns) => fns.reduce((f, g) => (...args) => f(g(...args)))
 export const identity = a => a
+export const isAnyOf = (...data) => (value) => Find(value)(data) ? true : false;
 export const isDefined = a => a !== undefined && a !== null
 export const JustOf = (a) => () => a
 export const Find = (value) => (data) => data.find(x => x == value)

@@ -1,11 +1,11 @@
 # JuanForm
 
-This is a library of React pre-built form components.
+This is a library of React 16 pre-built form components. All components are functional components using hooks.
 
 ## Usage
 
 The main component is the Form component. It will save the current state of the form.
-It uses the "name" prop of the components inside to save each value. If no "name" prop is given, it will try to use the "id" prop instead.
+It uses the "name" prop of the components inside to save each value. If no "name" prop is given, it will try to use the "id" prop instead. Every form component must have either an id or a name.
 
 ```javascript
 import React from 'react';
@@ -31,7 +31,7 @@ The onSubmit prop of Form, receives a callback and the callback will receive the
 
 ## Custom Styled Components
 
-All components have an "as" prop to pass a styled-component to replace the default component. The passed component should match the default component's tag. As an utility, the Styled module can be used to add custom styles without having to explicitly know which tag belongs to each component. The use of the "as" prop will completely erase the default styles (which as of this version are basically none) so if this behavior is not desired, the Styled module includes the default styles for each comnponent as to be able to take full advantage of styled-components extension capabilities.
+All components have an "as" prop to pass a styled-component to replace the default component. The passed component should match the default component's tag though this is not enforced in any way. As an utility, the Styled module can be used to add custom styles without having to explicitly know which tag belongs to each component. The use of the "as" prop will completely erase the default styles (which as of this version are basically none) so if this behavior is not desired, the Styled module includes the default styles for each comnponent as to be able to take full advantage of styled-components extension capabilities.
 Form only checks for immediate children. Meaning that if you need to wrap the component inside a different component to give a particular style, you should use the Field component. The Field component is just a wrapper for this particular case.
 
 ```javascript
@@ -89,8 +89,8 @@ const MyForm = () => {
 
 ```
 
-The utility functions don't do much. They only define a property inside the class prototype.
-There is also a way to change how the Form component transforms its children. Through the createCustomForm utility method. It receives a function and calls it with two parameters: the first is the child to be modified and the second is the instance of the Form component and must return the transformed child. This does not override the Form's default behavior. Only extends it. A simpel example:
+The utility functions don't do much. They only define a property inside the component prototype.
+There is also a way to change how the Form component transforms its children. Through the createCustomForm utility method. It receives a function and calls it with a child and must return the transformed child. This does not override the Form's default behavior. Only extends it. A simpel example:
 
 ```javascript
 import React from 'react'
