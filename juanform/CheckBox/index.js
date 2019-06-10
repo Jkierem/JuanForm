@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -11,9 +11,9 @@ var _Styled = _interopRequireDefault(require("../Styled"));
 
 var _Utils = require("../Utils");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
@@ -23,7 +23,7 @@ function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = 
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-var StyledInput = _Styled.default.Defaults.CheckBox;
+var StyledInput = _Styled["default"].Defaults.CheckBox;
 
 var CheckBox = function CheckBox(props) {
   var _props$checked = props.checked,
@@ -51,7 +51,7 @@ var CheckBox = function CheckBox(props) {
       id = props.id,
       _props$as = props.as,
       StyledComponent = _props$as === void 0 ? StyledInput : _props$as;
-  return _react.default.createElement(StyledComponent, {
+  return _react["default"].createElement(StyledComponent, {
     id: id,
     type: "checkbox",
     value: name,
@@ -62,4 +62,4 @@ var CheckBox = function CheckBox(props) {
 
 var _default = (0, _Utils.createCheckBox)(CheckBox);
 
-exports.default = _default;
+exports["default"] = _default;

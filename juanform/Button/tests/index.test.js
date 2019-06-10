@@ -10,13 +10,13 @@ var _toolbox = require("../../Utils/toolbox");
 
 var _ = _interopRequireDefault(require("../"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 describe("#Button", function () {
   describe("Button behavior", function () {
-    var shallowWrapper = (0, _enzyme.shallow)(_react.default.createElement(_.default, null));
+    var shallowWrapper = (0, _enzyme.shallow)(_react["default"].createElement(_["default"], null));
 
-    var eventSpy = _sinon.default.spy();
+    var eventSpy = _sinon["default"].spy();
 
     var mockEvent = (0, _toolbox.createMockEvent)(eventSpy);
     it("should work without onClick", function () {
@@ -24,7 +24,7 @@ describe("#Button", function () {
       expect(eventSpy.called).toBeTruthy();
     });
     it("should call onClick when given", function () {
-      var onClickSpy = _sinon.default.spy();
+      var onClickSpy = _sinon["default"].spy();
 
       shallowWrapper.setProps({
         onClick: onClickSpy
@@ -34,12 +34,12 @@ describe("#Button", function () {
     });
   });
   describe("Button rendering", function () {
-    var renderWrapper = (0, _enzyme.render)(_react.default.createElement(_.default, null));
+    var renderWrapper = (0, _enzyme.render)(_react["default"].createElement(_["default"], null));
     it("should match snapshot", function () {
       expect(renderWrapper).toMatchSnapshot();
     });
     it("should render the 'as' component prop", function () {
-      var wrapper = (0, _enzyme.mount)(_react.default.createElement(_.default, {
+      var wrapper = (0, _enzyme.mount)(_react["default"].createElement(_["default"], {
         as: _toolbox.StubComponent
       }));
       var stub = wrapper.find(_toolbox.StubComponent);

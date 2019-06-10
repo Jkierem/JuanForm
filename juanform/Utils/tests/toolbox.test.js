@@ -8,7 +8,7 @@ var _enzyme = require("enzyme");
 
 var _toolbox = require("../toolbox");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
@@ -37,7 +37,7 @@ describe("Toolbox test", function () {
   });
   describe("Call", function () {
     it("should return a function that calls call method with proper args", function () {
-      var spy = _sinon.default.spy();
+      var spy = _sinon["default"].spy();
 
       function funk() {
         spy(this);
@@ -50,7 +50,7 @@ describe("Toolbox test", function () {
   });
   describe("OverrideProps", function () {
     it("should override props", function () {
-      var spy = _sinon.default.spy();
+      var spy = _sinon["default"].spy();
 
       var over = {
         one: "argument"
@@ -68,7 +68,7 @@ describe("Toolbox test", function () {
   });
   describe("CallInObject", function () {
     it("should call a method inside an object", function () {
-      var spy = _sinon.default.spy();
+      var spy = _sinon["default"].spy();
 
       var obj = {
         myMethod: spy
@@ -200,7 +200,7 @@ describe("Toolbox test", function () {
   });
   describe("Stub Component", function () {
     it("should render a stub component", function () {
-      var wrapper = (0, _enzyme.render)(_react.default.createElement(_toolbox.StubComponent, null));
+      var wrapper = (0, _enzyme.render)(_react["default"].createElement(_toolbox.StubComponent, null));
       expect(wrapper).toMatchSnapshot();
     });
   });

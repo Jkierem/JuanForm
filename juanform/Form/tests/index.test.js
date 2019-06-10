@@ -16,9 +16,9 @@ var _ = _interopRequireWildcard(require("../"));
 
 var _2 = require("../../");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 describe("#Form", function () {
   describe("Form transform function", function () {
@@ -43,16 +43,16 @@ describe("#Form", function () {
     };
 
     it("should ignore unknown components", function () {
-      var FormComponents = [createPropTest(_react.default.createElement(_2.Button, null), "onClick"), createPropTest(_react.default.createElement(_toolbox.StubComponent, null), "onClick"), createPropTest(_react.default.createElement(_toolbox.StubComponent, null), "onChange")];
+      var FormComponents = [createPropTest(_react["default"].createElement(_2.Button, null), "onClick"), createPropTest(_react["default"].createElement(_toolbox.StubComponent, null), "onClick"), createPropTest(_react["default"].createElement(_toolbox.StubComponent, null), "onChange")];
       var mapped = FormComponents.map((0, _toolbox.callInObject)("map", transform)).map((0, _toolbox.callInObject)("isPropDefined")).map(function (x) {
         return !x;
       }).every(Boolean);
       expect(mapped).toBe(true);
     });
     it("should add event to known components", function () {
-      var FormComponents = [createPropTest(_react.default.createElement(_2.Button, {
+      var FormComponents = [createPropTest(_react["default"].createElement(_2.Button, {
         submit: true
-      }), "onClick"), createPropTest(_react.default.createElement(_2.CheckBox, null), "onChange"), createPropTest(_react.default.createElement(_2.ComboBox, null), "onChange"), createPropTest(_react.default.createElement(_2.Input, null), "onChange"), createPropTest(_react.default.createElement(_2.Field, null), "transform")];
+      }), "onClick"), createPropTest(_react["default"].createElement(_2.CheckBox, null), "onChange"), createPropTest(_react["default"].createElement(_2.ComboBox, null), "onChange"), createPropTest(_react["default"].createElement(_2.Input, null), "onChange"), createPropTest(_react["default"].createElement(_2.Field, null), "transform")];
       var mapped = FormComponents.map((0, _toolbox.callInObject)("map", transform)).map((0, _toolbox.callInObject)("isPropDefined")).every(Boolean);
       expect(mapped).toBe(true);
     });
@@ -60,10 +60,10 @@ describe("#Form", function () {
       expect(transform(null)).toBeUndefined();
     });
 
-    var transformSpy = _sinon.default.spy();
+    var transformSpy = _sinon["default"].spy();
 
     var CustomForm = (0, _Utils.createCustomForm)(transformSpy);
-    var custom = (0, _enzyme.mount)(_react.default.createElement(CustomForm, null, _react.default.createElement("div", null), _react.default.createElement("div", null), _react.default.createElement("div", null)));
+    var custom = (0, _enzyme.mount)(_react["default"].createElement(CustomForm, null, _react["default"].createElement("div", null), _react["default"].createElement("div", null), _react["default"].createElement("div", null)));
     it("should call customTransform when defined", function () {
       expect(transformSpy.callCount).toBe(3);
     });
@@ -73,15 +73,15 @@ describe("#Form", function () {
       value: "someReallyGoodValue"
     };
 
-    var preventDefaultSpy = _sinon.default.spy();
+    var preventDefaultSpy = _sinon["default"].spy();
 
     var mockEvent = (0, _toolbox.createMockEvent)(preventDefaultSpy, mockTarget);
 
-    var onChangeSpy = _sinon.default.spy();
+    var onChangeSpy = _sinon["default"].spy();
 
-    var wrapper = (0, _enzyme.mount)(_react.default.createElement(_.default, {
+    var wrapper = (0, _enzyme.mount)(_react["default"].createElement(_["default"], {
       onChange: onChangeSpy
-    }, _react.default.createElement(_2.Input, {
+    }, _react["default"].createElement(_2.Input, {
       name: "name"
     })));
     it("should call onChange prop when handleChange", function () {
@@ -91,12 +91,12 @@ describe("#Form", function () {
         value: "something"
       };
       (0, _testUtils.act)(function () {
-        wrapper.find(_.default).find(_2.Input).props().onChange(mockEvent, data);
+        wrapper.find(_["default"]).find(_2.Input).props().onChange(mockEvent, data);
       });
       expect(onChangeSpy.callCount).toBe(1);
     });
     it("should work without onChange", function () {
-      var wrapper = (0, _enzyme.mount)(_react.default.createElement(_.default, null, _react.default.createElement(_2.Input, {
+      var wrapper = (0, _enzyme.mount)(_react["default"].createElement(_["default"], null, _react["default"].createElement(_2.Input, {
         name: "name"
       })));
       var data = {
@@ -105,18 +105,18 @@ describe("#Form", function () {
         value: "something"
       };
       (0, _testUtils.act)(function () {
-        wrapper.find(_.default).find(_2.Input).props().onChange(mockEvent, data);
+        wrapper.find(_["default"]).find(_2.Input).props().onChange(mockEvent, data);
       });
       expect(wrapper).toBeDefined();
     });
     it("should call onSubmit prop upon handleSubmit", function () {
       preventDefaultSpy.resetHistory();
 
-      var onSubmitSpy = _sinon.default.spy();
+      var onSubmitSpy = _sinon["default"].spy();
 
-      var wrapper = (0, _enzyme.shallow)(_react.default.createElement(_.default, {
+      var wrapper = (0, _enzyme.shallow)(_react["default"].createElement(_["default"], {
         onSubmit: onSubmitSpy
-      }, _react.default.createElement(_2.Button, {
+      }, _react["default"].createElement(_2.Button, {
         submit: true
       })));
       (0, _testUtils.act)(function () {
@@ -128,11 +128,11 @@ describe("#Form", function () {
   });
   describe("Form rendering", function () {
     it("should render correctly", function () {
-      var wrapper = (0, _enzyme.render)(_react.default.createElement(_.default, null));
+      var wrapper = (0, _enzyme.render)(_react["default"].createElement(_["default"], null));
       expect(wrapper).toMatchSnapshot();
     });
     it("should render the 'as' prop", function () {
-      var wrapper = (0, _enzyme.mount)(_react.default.createElement(_.default, {
+      var wrapper = (0, _enzyme.mount)(_react["default"].createElement(_["default"], {
         as: _toolbox.StubComponent
       }));
       expect(wrapper.find(_toolbox.StubComponent).length).toBe(1);

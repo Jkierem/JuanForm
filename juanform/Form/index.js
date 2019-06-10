@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.createTransform = exports.reducer = void 0;
+exports["default"] = exports.createTransform = exports.reducer = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -11,9 +11,9 @@ var _Styled = _interopRequireDefault(require("../Styled"));
 
 var _toolbox = require("../Utils/toolbox");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
@@ -27,7 +27,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var StyledForm = _Styled.default.Defaults.Form;
+var StyledForm = _Styled["default"].Defaults.Form;
 
 var reducer = function reducer(state, action) {
   switch (action.type) {
@@ -61,7 +61,7 @@ var createTransform = function createTransform(_ref) {
     var isChangeType = (0, _toolbox.isAnyOf)("Input", "ComboBox", "CheckBox");
 
     if (isFieldType(element)) {
-      resultingClone = _react.default.cloneElement(child, {
+      resultingClone = _react["default"].cloneElement(child, {
         transform: createTransform({
           props: props,
           onSubmit: onSubmit,
@@ -70,12 +70,12 @@ var createTransform = function createTransform(_ref) {
       });
     } else if (isClickType(element)) {
       if (child.props.submit) {
-        resultingClone = _react.default.cloneElement(child, {
+        resultingClone = _react["default"].cloneElement(child, {
           onClick: onSubmit
         });
       }
     } else if (isChangeType(element)) {
-      resultingClone = _react.default.cloneElement(child, {
+      resultingClone = _react["default"].cloneElement(child, {
         onChange: onInputChange
       });
     } else {
@@ -121,11 +121,11 @@ var Form = function Form(props) {
   var id = props.id,
       _props$as = props.as,
       StyledComponent = _props$as === void 0 ? StyledForm : _props$as;
-  return _react.default.createElement(StyledComponent, {
+  return _react["default"].createElement(StyledComponent, {
     id: id,
     onSubmit: handleSubmit
-  }, _react.default.Children.map(props.children, transform));
+  }, _react["default"].Children.map(props.children, transform));
 };
 
 var _default = Form;
-exports.default = _default;
+exports["default"] = _default;

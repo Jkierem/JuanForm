@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -13,9 +13,9 @@ var _toolbox = require("../Utils/toolbox");
 
 var _index = require("../Utils/index.js");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
@@ -25,8 +25,8 @@ function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = 
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-var StyledCombo = _Styled.default.Defaults.ComboBox;
-var StyledOption = _Styled.default.Defaults.Option;
+var StyledCombo = _Styled["default"].Defaults.ComboBox;
+var StyledOption = _Styled["default"].Defaults.Option;
 var getFirst = (0, _toolbox.prop)("0");
 var getValue = (0, _toolbox.prop)("value");
 var getProps = (0, _toolbox.prop)("props");
@@ -39,7 +39,7 @@ var getValueFromFirstChild = (0, _toolbox.compose)(getValue, getPropsOfFirst);
 var Option = function Option(props) {
   var _props$as = props.as,
       StyledComponent = _props$as === void 0 ? StyledOption : _props$as;
-  return _react.default.createElement(StyledComponent, props, props.children);
+  return _react["default"].createElement(StyledComponent, props, props.children);
 };
 
 var renderOptions = function renderOptions(renderData) {
@@ -48,13 +48,13 @@ var renderOptions = function renderOptions(renderData) {
       emptyMessage = _renderData$emptyMess === void 0 ? "-- Empty --" : _renderData$emptyMess;
 
   if (options.length === 0) {
-    return _react.default.createElement(Option, {
+    return _react["default"].createElement(Option, {
       value: null
     }, emptyMessage);
   }
 
   return options.map(function (op, key) {
-    return _react.default.createElement(Option, {
+    return _react["default"].createElement(Option, {
       key: key,
       value: op.value
     }, op.label);
@@ -67,7 +67,7 @@ var ComboBox = function ComboBox(props) {
       options = props.options,
       emptyMessage = props.emptyMessage;
 
-  var children = _react.default.Children.toArray(props.children);
+  var children = _react["default"].Children.toArray(props.children);
 
   var defaultValue = props.value || getFirstValue(options) || getValueFromFirstChild(children) || getFirstGrandson(children);
 
@@ -101,7 +101,7 @@ var ComboBox = function ComboBox(props) {
 
   var _props$as2 = props.as,
       StyledComponent = _props$as2 === void 0 ? StyledCombo : _props$as2;
-  return _react.default.createElement(StyledComponent, {
+  return _react["default"].createElement(StyledComponent, {
     id: id,
     name: name,
     onChange: handleChange
@@ -115,4 +115,4 @@ ComboBox.Option = Option;
 
 var _default = (0, _index.createComboBox)(ComboBox);
 
-exports.default = _default;
+exports["default"] = _default;

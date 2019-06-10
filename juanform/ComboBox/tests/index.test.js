@@ -14,35 +14,35 @@ var _Styled = _interopRequireDefault(require("../../Styled"));
 
 var _ = _interopRequireDefault(require("../"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 describe("#ComboBox", function () {
   describe("ComboBox.Option rendering", function () {
     it("should match snapshot", function () {
-      var wrapper = (0, _enzyme.render)(_react.default.createElement(_.default.Option, null));
+      var wrapper = (0, _enzyme.render)(_react["default"].createElement(_["default"].Option, null));
       expect(wrapper).toMatchSnapshot();
     });
     it("should render the 'as' prop", function () {
-      var wrapper = (0, _enzyme.mount)(_react.default.createElement(_.default.Option, {
+      var wrapper = (0, _enzyme.mount)(_react["default"].createElement(_["default"].Option, {
         as: _toolbox.StubComponent
       }));
       expect(wrapper.find(_toolbox.StubComponent).length).toBe(1);
     });
     it("should an option and render children", function () {
-      var wrapper = (0, _enzyme.mount)(_react.default.createElement(_.default.Option, null, "hey"));
-      var options = wrapper.find(_Styled.default.Defaults.Option);
+      var wrapper = (0, _enzyme.mount)(_react["default"].createElement(_["default"].Option, null, "hey"));
+      var options = wrapper.find(_Styled["default"].Defaults.Option);
       expect(options.length).toBe(1);
       expect(options.text()).toBe("hey");
     });
   });
   describe("ComboBox behavior", function () {
-    var onChangeSpy = _sinon.default.spy();
+    var onChangeSpy = _sinon["default"].spy();
 
     var mockTarget = {
       value: "someValue"
     };
     var mockEvent = (0, _toolbox.createMockEvent)(undefined, mockTarget);
-    var wrapper = (0, _enzyme.mount)(_react.default.createElement(_.default, {
+    var wrapper = (0, _enzyme.mount)(_react["default"].createElement(_["default"], {
       id: "test",
       onChange: onChangeSpy
     }));
@@ -54,50 +54,50 @@ describe("#ComboBox", function () {
     });
     it("should call onChage prop when handleChange is triggered", function () {
       (0, _testUtils.act)(function () {
-        wrapper.find(_Styled.default.Defaults.ComboBox).props().onChange(mockEvent);
+        wrapper.find(_Styled["default"].Defaults.ComboBox).props().onChange(mockEvent);
       });
       expect(onChangeSpy.callCount).toBe(2);
       expect(onChangeSpy.secondCall.args[1].value).toEqual(mockTarget.value);
     });
 
-    var someSpy = _sinon.default.spy();
+    var someSpy = _sinon["default"].spy();
 
-    var comboWithOptions = (0, _enzyme.mount)(_react.default.createElement(_.default, {
+    var comboWithOptions = (0, _enzyme.mount)(_react["default"].createElement(_["default"], {
       onChange: someSpy
-    }, _react.default.createElement(_.default.Option, {
+    }, _react["default"].createElement(_["default"].Option, {
       value: "one"
-    }), _react.default.createElement(_.default.Option, {
+    }), _react["default"].createElement(_["default"].Option, {
       value: "two"
     })));
     it("should choose the first value of options", function () {
       expect(someSpy.firstCall.args[1].value).toBe("one");
     });
     someSpy.resetHistory();
-    var comboWithOptionsWithChildren = (0, _enzyme.shallow)(_react.default.createElement(_.default, {
+    var comboWithOptionsWithChildren = (0, _enzyme.shallow)(_react["default"].createElement(_["default"], {
       onChange: someSpy
-    }, _react.default.createElement(_.default.Option, null, "One"), _react.default.createElement(_.default.Option, null, "Two")));
+    }, _react["default"].createElement(_["default"].Option, null, "One"), _react["default"].createElement(_["default"].Option, null, "Two")));
     it("should choose the first child of options", function () {
       expect(someSpy.firstCall.args[1].value).toBe("one");
     });
   });
   describe("ComboBox rendering", function () {
     it("should match snapshot", function () {
-      var wrapper = (0, _enzyme.render)(_react.default.createElement(_.default, null));
+      var wrapper = (0, _enzyme.render)(_react["default"].createElement(_["default"], null));
       expect(wrapper).toMatchSnapshot();
     });
     it("should render a null value option on empty options", function () {
-      var wrapper = (0, _enzyme.shallow)(_react.default.createElement(_.default, {
+      var wrapper = (0, _enzyme.shallow)(_react["default"].createElement(_["default"], {
         options: []
       }));
-      expect(wrapper.find(_.default.Option).length).toBe(1);
+      expect(wrapper.find(_["default"].Option).length).toBe(1);
     });
     it("should show custom empty message", function () {
       var customMessage = "Nothing to see here...";
-      var wrapper = (0, _enzyme.mount)(_react.default.createElement(_.default, {
+      var wrapper = (0, _enzyme.mount)(_react["default"].createElement(_["default"], {
         options: [],
         emptyMessage: customMessage
       }));
-      expect(wrapper.find(_.default.Option).text()).toBe(customMessage);
+      expect(wrapper.find(_["default"].Option).text()).toBe(customMessage);
     });
     it("should render options given an option list", function () {
       var options = [{
@@ -113,13 +113,13 @@ describe("#ComboBox", function () {
         value: 4,
         label: "Four"
       }];
-      var wrapper = (0, _enzyme.shallow)(_react.default.createElement(_.default, {
+      var wrapper = (0, _enzyme.shallow)(_react["default"].createElement(_["default"], {
         options: options
       }));
-      expect(wrapper.find(_.default.Option).length).toBe(4);
+      expect(wrapper.find(_["default"].Option).length).toBe(4);
     });
     it("should render the 'as' prop", function () {
-      var wrapper = (0, _enzyme.mount)(_react.default.createElement(_.default, {
+      var wrapper = (0, _enzyme.mount)(_react["default"].createElement(_["default"], {
         as: _toolbox.StubComponent
       }));
       expect(wrapper.find(_toolbox.StubComponent).length).toBe(1);

@@ -80,6 +80,10 @@ class App extends React.Component {
             <Input id={"text"} name="textField" placeholder={"Some text..."} />
           </Field>
           <Field>
+            <Label htmlFor={"pass"} >Password</Label>
+            <Input id={"pass"} type={"password"} name="passwordField" placeholder={"Some password..."} />
+          </Field>
+          <Field>
             <Label as={CustomLabel} htmlFor={"text2"} >Text With Custom Label</Label>
             <Input id={"text2"} name="textFieldWithCustomLabel" placeholder={"Some text..."} />
           </Field>

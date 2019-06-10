@@ -3,16 +3,16 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.createLabel = exports.createInput = exports.createField = exports.createComboBox = exports.createCheckBox = exports.createButton = exports.createFormElement = exports.createCustomForm = void 0;
+exports["default"] = exports.createLabel = exports.createInput = exports.createField = exports.createComboBox = exports.createCheckBox = exports.createButton = exports.createFormElement = exports.createCustomForm = void 0;
 
 var _Form = _interopRequireDefault(require("../Form"));
 
 var _toolbox = require("./toolbox");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var createCustomForm = function createCustomForm(extra) {
-  return (0, _toolbox.overrideProps)(_Form.default)({
+  return (0, _toolbox.overrideProps)(_Form["default"])({
     customTransform: extra
   });
 };
@@ -42,4 +42,4 @@ var Utils = {
   createCustomForm: createCustomForm
 };
 var _default = Utils;
-exports.default = _default;
+exports["default"] = _default;

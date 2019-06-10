@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.findType = void 0;
+exports["default"] = exports.findType = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -15,9 +15,9 @@ var _toolbox = require("../Utils/toolbox");
 
 var _constants = require("./constants");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
@@ -27,7 +27,7 @@ function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = 
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-var StyledInput = _Styled.default.Defaults.Input;
+var StyledInput = _Styled["default"].Defaults.Input;
 
 var findType = function findType(t) {
   return (0, _toolbox.Either)(_constants.Types)((0, _toolbox.Find)(t)) //or
@@ -63,7 +63,7 @@ var Input = function Input(props) {
 
   var _type = findType(type);
 
-  return _react.default.createElement(StyledComponent, {
+  return _react["default"].createElement(StyledComponent, {
     id: id,
     name: name,
     onChange: handleChange,
@@ -75,4 +75,4 @@ var Input = function Input(props) {
 
 var _default = (0, _Utils.createInput)(Input);
 
-exports.default = _default;
+exports["default"] = _default;
