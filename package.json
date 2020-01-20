@@ -94,5 +94,8 @@
       "json",
       "jsx"
     ]
+  },
+  "dependencies": {
+    "@juan-utils/functions": "^2.2.0"
   }
 }
