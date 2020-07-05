@@ -17,9 +17,9 @@ const getFirstGrandson = compose(getChildren, getPropsOfFirst)
 const getValueFromFirstChild = compose(getValue, getPropsOfFirst)
 
 const Option = (props) => {
-	const { as: StyledComponent = StyledOption } = props;
+	const { as: StyledComponent = StyledOption, ...rest } = props;
 	return (
-		<StyledComponent {...props}>{props.children}</StyledComponent>
+		<StyledComponent {...rest}>{props.children}</StyledComponent>
 	)
 }
 
@@ -57,9 +57,9 @@ const ComboBox = (props) => {
 		})
 	}
 
-	const { as: StyledComponent = StyledCombo } = props;
+	const { as: StyledComponent = StyledCombo, ...rest } = props;
 	return (
-		<StyledComponent id={id} name={name} onChange={handleChange}>
+		<StyledComponent id={id} name={name} onChange={handleChange} {...rest}>
 			{options ? renderOptions({ options, emptyMessage }) : props.children}
 		</StyledComponent>
 	);

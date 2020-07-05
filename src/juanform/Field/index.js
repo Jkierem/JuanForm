@@ -13,9 +13,9 @@ const Field = (props) => {
 		})
 	}
 
-	const { as: StyledComponent = StyledArticle } = props;
+	const { as: StyledComponent = StyledArticle, ...rest } = props;
 	return (
-		<StyledComponent>
+		<StyledComponent {...rest}>
 			{transformChildren(props)}
 		</StyledComponent>
 	)

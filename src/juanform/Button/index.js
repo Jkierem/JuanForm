@@ -14,11 +14,11 @@ const Button = (props) => {
 		}
 	}
 
-	const { id, label = props.children, as } = props
+	const { id, label = props.children, as, ...rest } = props
 	const StyledComponent = as ? as : StyledButton;
 
 	return (
-		<StyledComponent id={id} onClick={handleClick} >{label}</StyledComponent>
+		<StyledComponent id={id} onClick={handleClick} {...rest}>{label}</StyledComponent>
 	);
 }
 

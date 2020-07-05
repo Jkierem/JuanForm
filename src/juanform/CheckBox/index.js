@@ -18,7 +18,7 @@ const CheckBox = (props) => {
 		})
 	}
 
-	const { name, id, as: StyledComponent = StyledInput } = props;
+	const { name, id, as: StyledComponent = StyledInput, ...rest } = props;
 	return (
 		<StyledComponent
 			id={id}
@@ -26,6 +26,7 @@ const CheckBox = (props) => {
 			value={name}
 			checked={isChecked}
 			onChange={handleChange}
+			{...rest}
 		/>
 	)
 }

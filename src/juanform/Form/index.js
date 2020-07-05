@@ -17,7 +17,7 @@ export const reducer = (state, action) => {
 	}
 }
 
-export const createTransform = ({ props, onSubmit, onInputChange, transform }) => (child) => {
+export const createTransform = ({ props, onSubmit, onInputChange }) => (child) => {
 	const definedChild = child == null ? {} : { ...child }
 	const { type = {} } = definedChild
 	const { formElement: element } = type;

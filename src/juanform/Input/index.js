@@ -26,7 +26,13 @@ const Input = (props) => {
 		})
 	}
 
-	const { id, name, type = "text", placeholder, as: StyledComponent = StyledInput } = props
+	const { 
+		id, 
+		name, 
+		type = "text", 
+		placeholder, as: StyledComponent = StyledInput,
+		...rest
+	} = props
 	const _type = findType(type)
 	return (
 		<StyledComponent
@@ -36,6 +42,7 @@ const Input = (props) => {
 			placeholder={placeholder}
 			type={_type}
 			value={value}
+			{...rest}
 		/>
 	);
 }
